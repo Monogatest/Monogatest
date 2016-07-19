@@ -1,0 +1,407 @@
+@import "bourbon/bourbon"
+@import "customVariables"
+
+//
+// |--------------------------------------------------------------------------
+// | Globals
+// |--------------------------------------------------------------------------
+// |
+// |
+
+:lang(ja)
+  font-family: 'Noto Sans Japanese', sans-serif
+body
+  font-size: 15px
+  line-height: 1.5
+  font-family: "Open Sans", $font-family-sans-serif
+.navbar
+  margin: 0
+  padding: 20px 0
+.top-nav-collapse
+  padding: 0
+  +transition(all .5s ease-in-out,padding .5s ease-in-out)
+.navbar-fixed-top,
+.navbar-fixed-bottom
+  // +position(sticky)
+.navbar-accent
+  background-color: $accent
+  border-color: $accent-dark
+  border-radius: 0
+  a
+    color: $gray-lighter
+    +transition()
+    &:hover, &:focus
+      color: $accent
+  .navbar-nav
+    .active
+      a, a:hover, a:focus
+        background-color: $gray-lighter
+        color: $accent
+  .navbar-brand
+    color: $gray-lighter
+    &:hover, &:focus
+      color: $body-bg
+  .navbar-toggle
+    border-color: $gray-lighter
+    .icon-bar
+      background-color: $gray-lighter
+    &:hover
+      border-color: $body-bg
+      .icon-bar
+        background-color: $body-bg
+.vcenter
+  display: inline-block
+  vertical-align: middle
+  float: none
+a, button
+  &:hover, &:focus
+    outline: 0 !important
+img
+  max-width: 100%
+input[type="text"], input[type="email"], input[type="password"], textarea
+  border-radius: 0 !important
+  box-shadow: 0 0
+  &:focus
+    box-shadow: 0 0
+    border-width: 2px
+input[type=radio].with-font, input[type=checkbox].with-font
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+  &+ label
+    cursor: pointer
+  &+ label:before
+    font-family: FontAwesome
+    display: inline-block
+    content: "\f096"
+    font-size: 1.2em
+    color: $gray-dark
+    width: 1.2em
+  &:checked
+    &+ label
+      color: $brand-primary
+      &:before
+        content: "\f14a"
+        color: $brand-primary
+        +animation(tick 130ms ease-in)
++keyframes(tick)
+  0%
+    +transform(scale(0))
+  90%
+    +transform(scale(1.2))
+  100%
+    +transform(scale(1))
+
+.btn.btn-monogatest
+  background-color: $accent
+  border-radius: 0
+  display: inline-block
+  padding: 5px 30px
+  font-weight: 700
+  max-width: 100%
+  white-space: normal
+  color: $body-bg
+  +transition()
+  &:hover,&:focus
+    background-color: $accent-dark
+.btn.btn-monogatest-lg
+  @extend .btn.btn-monogatest
+  font-size: $font-size-large*1.5
+.modal
+  .modal-title
+    text-align: left
+    font-weight: 800
+  .close
+    font-size: 2em
+    line-height: 0.6
+  textarea
+    resize: none
+.section
+  padding: 70px 0
+  text-align: center
+  h1
+    color: $accent
+    text-align: center
+    display: inline-block
+    text-transform: uppercase
+    font-weight: 700
+    margin-bottom: 1em
+.logo
+  width: 450px
+  max-width: 90%
+  margin: 0 auto 2em
+  display: block
+.monogatest-card
+  background: $body-bg
+  min-height: 100px
+  margin: 10px auto
+  border: 10px solid $gray-lighter
+  +transition()
+  box-shadow: 0 5px 3px rgba($gray-darker, 0.3%)
+  &:hover
+    border-color: $accent
+    a
+      text-decoration: none
+  img
+    width: 100%
+    .title
+    color: $gray-darker
+    margin: 0
+    background-color: $body-bg
+  .title
+    color: $gray-base
+    margin: 15px auto
+.monogatest-card-small
+  @extend .monogatest-card
+  border-width: 5px
+  img
+    height: 128px
+.sidebar
+  text-align: left
+  background-color: $gray-lighter
+  h3
+    font-weight: 700
+    position: relative
+    &:after
+      content: ''
+      position: absolute
+      left: 0
+      right: 20%
+      bottom: -5px
+      height: 1px
+      background-color: $gray-light
+  p
+    @extend .text-muted
+
+//
+// |--------------------------------------------------------------------------
+// | Header Section
+// |--------------------------------------------------------------------------
+// |
+// |
+
+.home-header
+  background:
+    image: url(/images/home-bg.png)
+    size: cover
+    repeat: no-repeat
+  width: 100%
+  height: 100vh
+  text-align: center
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  .logo-title
+    max-width: 90%
+    img
+      width: 450px
+      max-width: 100%
+  .go-down
+    display: block
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 10
+    a
+      color: $accent-pct-40
+      +transition()
+      &:hover
+        color: $accent
+//
+// |--------------------------------------------------------------------------
+// | About Section
+// |--------------------------------------------------------------------------
+// |
+//
+.about-section
+  background: $gray-lighter
+  .about-us
+    text-align: justify
+    img
+      margin: 0 auto
+      max-width: 100%
+//
+// |--------------------------------------------------------------------------
+// | Test Section
+// |--------------------------------------------------------------------------
+// |
+// |
+.test-section
+  background: $body-bg
+
+// |
+// |--------------------------------------------------------------------------
+// | Contribute Section
+// |--------------------------------------------------------------------------
+// |
+.contribute-section
+  background: $gray-lighter
+.contribute-container
+  text-align: center
+  font-size: 13px
+  .contribute-item
+    display: inline-block
+    position: relative
+    width: 160px
+    height: 400px
+    padding: 30px 0
+    border: 1px solid lighten($accent, 40%)
+    margin-left: -5px
+    margin-top: -1px
+    cursor: pointer
+    vertical-align: top
+    .icon
+      display: block
+      font-size: 45px
+      i, img
+        +transition()
+        +scale(1)
+      i
+        color: $accent
+      img.contribute-image
+        height: 45px
+        vertical-align: baseline
+    .title
+      text-transform: uppercase
+      font-weight: bold
+    .description
+      margin: 0
+      text-align: left
+      color: $gray
+      padding: 20px 10px 0
+    &:before
+      content: ""
+      z-index: 2
+      filter: alpha(opacity=0)
+      opacity: 0
+      position: absolute
+      left: 50%
+      bottom: -1px
+      margin-left: -6px
+      width: 0px
+      height: 0px
+      border-style: solid
+      border-width: 0 6px 6px 6px
+      border-color: transparent
+      border-bottom-color: $accent
+      +transition()
+    &:after
+      content: ""
+      z-index: 2
+      filter: alpha(opacity=0)
+      opacity: 0
+      height: 0
+      width: 100%
+      border-color: $accent
+      border-width: 0 0 5px 0
+      border-style: solid
+      position: absolute
+      left: 0
+      bottom: -6px
+      +transition()
+    &:hover
+      .icon
+        i, img
+          +scale(1.5)
+      &:before, &:after
+        opacity: 100
+// |
+// |--------------------------------------------------------------------------
+// | FAQ Section
+// |--------------------------------------------------------------------------
+// |
+#accordion
+  text-align: left
+  .panel
+    border-radius: 0
+    border: 0
+    margin-bottom: 10px
+    .panel-heading
+      padding: 0
+      border-radius: 0
+      border: 1px solid rgba($gray-light, 0.3)
+      a
+        display: block
+        padding: 20px 15px
+        &:hover, &:focus
+          text-decoration: none
+          outline: 0
+        &:before
+          position: relative
+          top: 2px
+          display: inline-block
+          font-family: 'Glyphicons Halflings'
+          font-style: normal
+          font-weight: normal
+          line-height: 1
+          -webkit-font-smoothing: antialiased
+          -moz-osx-font-smoothing: grayscale
+          font-size: 20px
+          margin-right: 10px
+          color: inherit
+          content: "\002b"
+          +transition()
+
+    .panel-heading.collapsed
+      border-color: rgba($accent-dark, 0.3)
+      a
+        color: $accent-dark
+        &:before
+          color: $accent
+          content: "\2212"
+    .panel-collapse
+      padding: 20px 15px
+      border: 1px solid rgba($gray-light, 0.3)
+      margin-top: -1px
+
+// |
+// |--------------------------------------------------------------------------
+// | Footer Section
+// |--------------------------------------------------------------------------
+// |
+footer
+  background: $accent
+  color: $body-bg
+  padding: 20px 0
+  text-align: center
+  .copyright
+    margin: 23px 0
+  .go-top
+    border: 1px solid $body-bg
+    display: inline-block
+    padding: 6px 6px 6px 7px
+    i
+      font-size: 45px
+      color: $body-bg
+  .social
+    @extend .copyright
+    i
+      color: $gray-lighter
+      font-size: 20px
+      margin: 0 5px
+      +scale(1)
+      +transition()
+      &:hover
+        +scale(2)
+        color: $body-bg
+// |
+// |--------------------------------------------------------------------------
+// | Small Screen
+// |--------------------------------------------------------------------------
+// |
+@media(max-width:767px)
+  .navbar
+    padding: 0
+  .test-section
+    .monogatest-card
+      margin: 40px 0
+  .monogatest-card-small
+    img
+      height: auto
