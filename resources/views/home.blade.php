@@ -22,13 +22,14 @@ MonogaTest
 	 <section id="about" class="section about-section">
 			 <div class="container">
 				 <h1>About MonogaTest</h1>
-					 <div class="row text-center">
-								 <div class="col-lg-8 vcenter">
-									 <p class="about-us">MonogaTest (<span lang="ja"><ruby><rb>物</rb><rp>(</rp><rt>もの</rt><rp>)</rp></ruby>がテスト</span>) aims to provide certain intermediate japanese language skills. The website provides various types of tests through reading stories, articles, or general questions and then starting the exam to test your knowledge, memory, and skills in the Japanese language.</p>
-									 <p class="about-us">By signing up to the MonogaTest website you will be able to: Save your exams history, track your language skills improvement, and submit your own test for others to solve. You will also be able to contact the authors of the exams and make full use of the MonogaTest website features.</p>
-								</div><div class="col-lg-4 vcenter">
-									<img src="/images/test-sample.png" alt="MonogaTest" />
-								</div>
+					<div class="row text-center">
+						<div class="col-lg-8 vcenter content-animate-fadeInDown">
+							<p class="about-us">MonogaTest (<span lang="ja"><ruby><rb>物</rb><rp>(</rp><rt>もの</rt><rp>)</rp></ruby>がテスト</span>) aims to provide certain intermediate japanese language skills. The website provides various types of tests through reading stories, articles, or general questions and then starting the exam to test your knowledge, memory, and skills in the Japanese language.</p>
+							<p class="about-us">By signing up to the MonogaTest website you will be able to: Save your exams history, track your language skills improvement, and submit your own test for others to solve. You will also be able to contact the authors of the exams and make full use of the MonogaTest website features.</p>
+						</div>
+						<div class="col-lg-4 vcenter content-animate-fadeInLeft">
+							<img src="/images/test-sample.png" alt="MonogaTest" />
+						</div>
 					 </div>
 			 </div>
 	 </section>
@@ -81,22 +82,22 @@ MonogaTest
 								 	Want to share your own test? Just submit your story/article with the prefered questions and answers and we will post your test under your name.
 								 </p>
 								 <div class="contribute-container clearfix">
-								 	<div class="contribute-item" data-toggle="modal" data-target="#askModal">
+								 	<div class="contribute-item content-animate-fadeInLeft" data-toggle="modal" data-target="#askModal">
 										<span class="icon"><img class="contribute-image" src="/images/ask-a-question.svg" alt="Ask a Question"></i></span>
 										<span class="title">Ask a Question</span>
 										<p class="description">Have trouble in MonogaTest? feel free to ask us a question! also visit the "FAQ section" to see the frequently asked questions</p>
 									</div>
-								 	<div class="contribute-item" data-toggle="modal" data-target="#createTestModal">
+								 	<div class="contribute-item content-animate-fadeInLeft" data-toggle="modal" data-target="#createTestModal">
 										<span class="icon"><img class="contribute-image" src="/images/create-test.svg" alt="Create a Test"></i></span>
 										<span class="title">Create a Test</span>
 										<p class="description">From here you can submit your own test and share it with other MonogaTest members. The submitted tests will be received by MonogaTest auditing team then we will post the test under your name</p>
 									</div>
-								 	<div class="contribute-item" data-toggle="modal" data-target="#volunteerModal">
+								 	<div class="contribute-item content-animate-fadeInLeft" data-toggle="modal" data-target="#volunteerModal">
 										<span class="icon"><i class="glyphicon glyphicon-heart"></i></span>
 										<span class="title">Volunteer</span>
 										<p class="description">You can volunteerly join MonogaTest team and help us by: auditing, developing and overall improving our website to give other MonogaTest members the best experience</p>
 									</div>
-								 	<div class="contribute-item" data-toggle="modal" data-target="#requestModal">
+								 	<div class="contribute-item content-animate-fadeInLeft" data-toggle="modal" data-target="#requestModal">
 										<span class="icon"><i class="glyphicon glyphicon-check"></i></span>
 										<span class="title">Submit a Request</span>
 										<p class="description">Have any ideas you would like us to add to the website? Please submit them from here</p>
@@ -196,7 +197,7 @@ MonogaTest
 							 <div class="col-lg-12">
 								 <h1>FAQ</h1>
 								 <div id="accordion" role="tablist" aria-multiselectable="true">
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingOne">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ1" aria-expanded="false" aria-controls="FAQ1">
@@ -210,7 +211,7 @@ MonogaTest
 								  	  </div>
 							    	</div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ2" aria-expanded="false" aria-controls="FAQ2">
@@ -224,7 +225,7 @@ MonogaTest
 											</div>
 								    </div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ3" aria-expanded="false" aria-controls="FAQ3">
@@ -238,7 +239,7 @@ MonogaTest
 											</div>
 								    </div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ4" aria-expanded="false" aria-controls="FAQ4">
@@ -252,7 +253,7 @@ MonogaTest
 											</div>
 								    </div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ5" aria-expanded="false" aria-controls="FAQ5">
@@ -266,7 +267,7 @@ MonogaTest
 											</div>
 								    </div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ6" aria-expanded="false" aria-controls="FAQ6">
@@ -280,7 +281,7 @@ MonogaTest
 											</div>
 								    </div>
 								  </div>
-								  <div class="panel panel-default">
+								  <div class="panel panel-default content-animate-fadeInDown">
 								    <div class="panel-heading" role="tab" id="FAQHeadingTwo">
 								      <h4 class="panel-title">
 								        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#FAQ7" aria-expanded="false" aria-controls="FAQ7">

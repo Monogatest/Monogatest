@@ -8079,6 +8079,46 @@ input[type=radio].with-font, input[type=checkbox].with-font {
       height: 1px;
       background-color: #777777; }
 
+.hide-content {
+  opacity: 0; }
+
+.show-content {
+  opacity: 1; }
+
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both; }
+  .animated.fadeInDown {
+    animation-name: fadeInDown; }
+  .animated.fadeInLeft {
+    animation-name: fadeInLeft; }
+  .animated.fadeInRight {
+    animation-name: fadeInRight; }
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px); }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
 .home-header {
   background-image: url(/images/home-bg.png);
   background-size: cover;

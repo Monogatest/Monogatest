@@ -109,9 +109,11 @@ input[type=radio].with-font, input[type=checkbox].with-font
   +transition()
   &:hover,&:focus
     background-color: $accent-dark
+
 .btn.btn-monogatest-lg
   @extend .btn.btn-monogatest
   font-size: $font-size-large*1.5
+
 .modal
   .modal-title
     text-align: left
@@ -121,6 +123,7 @@ input[type=radio].with-font, input[type=checkbox].with-font
     line-height: 0.6
   textarea
     resize: none
+
 .section
   padding: 70px 0
   text-align: center
@@ -131,11 +134,13 @@ input[type=radio].with-font, input[type=checkbox].with-font
     text-transform: uppercase
     font-weight: 700
     margin-bottom: 1em
+
 .logo
   width: 450px
   max-width: 90%
   margin: 0 auto 2em
   display: block
+
 .monogatest-card
   background: $body-bg
   min-height: 100px
@@ -156,11 +161,13 @@ input[type=radio].with-font, input[type=checkbox].with-font
   .title
     color: $gray-base
     margin: 15px auto
+
 .monogatest-card-small
   @extend .monogatest-card
   border-width: 5px
   img
     height: 128px
+
 .sidebar
   text-align: left
   background-color: $gray-lighter
@@ -177,6 +184,45 @@ input[type=radio].with-font, input[type=checkbox].with-font
       background-color: $gray-light
   p
     @extend .text-muted
+
+.hide-content
+  opacity: 0
+.show-content
+  opacity: 1
+
+.animated
+  +animation-duration(1s)
+  +animation-fill-mode(both)
+  &.fadeInDown
+    +animation-name(fadeInDown)
+  &.fadeInLeft
+    +animation-name(fadeInLeft)
+  &.fadeInRight
+    +animation-name(fadeInRight)
+
++keyframes(fadeInDown) 
+  0% 
+    opacity: 0
+    +transform(translateY(-20px))
+  100% 
+    opacity: 1
+    +transform(translateY(0))
+
++keyframes(fadeInLeft) 
+  0% 
+    opacity: 0
+    +transform(translateX(-20px))
+  100% 
+    opacity: 1
+    +transform(translateX(0))
++keyframes(fadeInRight) 
+  0% 
+    opacity: 0
+    +transform(translateX(20px))
+  100% 
+    opacity: 1
+    +transform(translateX(0))
+
 
 //
 // |--------------------------------------------------------------------------

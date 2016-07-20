@@ -1,5 +1,5 @@
-cd c:/wamp64/www/homestead
+cd C:\xampp\htdocs\Homestead
 vagrant up
 vagrant provision
-cd c:/wamp64/www/sites/monogatest
+cd C:\xampp\htdocs\sites\monogatest
 gulp watch
