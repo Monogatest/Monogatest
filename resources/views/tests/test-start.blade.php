@@ -26,7 +26,6 @@
 	        	</div>
 	        		Reference: <a target="_blank" href="{{ $test->reference_url }}">{{ $test->reference_name }}</a><br />
 							Author: {{ $test->user->first_name }} at: {{$test->created_at->format('d/M/Y')}}
-						
 	        	</div>
 	      </div>
     	</div><!-- Row -->

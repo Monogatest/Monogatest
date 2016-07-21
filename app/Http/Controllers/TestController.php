@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Test;
+use App\TestPage;
 use App\Http\Requests;
 
 class TestController extends Controller
@@ -17,8 +18,9 @@ class TestController extends Controller
     $test = Test::findOrFail($test_id);
     return view('tests.test', ['test' => $test]);
   } 
-  public function getStartTest($test_id){
+  public function getStartTest($test_id, $page_id){
     $test = Test::findOrFail($test_id);
-    return view('tests.test-start', ['test' => $test]);
+    $page = TestPage::findOrFail($test_id);
+    return view('tests.test-start', ['test' => $test, 'page' => $page_id]);
   }
 }
