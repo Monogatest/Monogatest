@@ -66,7 +66,7 @@ Route::get('/tests/{test_id}', [
   'uses' => 'TestController@getTest'
 ]);
 
-Route::get('/tests/{test_id}/test/{page_id?}', [
+Route::get('/tests/{test_id}/test/{page_number?}', [
   'as' => 'tests.test.start',
   'uses' => 'TestController@getStartTest'
 ]);

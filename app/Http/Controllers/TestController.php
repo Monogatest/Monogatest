@@ -17,10 +17,10 @@ class TestController extends Controller
   public function getTest($test_id){
     $test = Test::findOrFail($test_id);
     return view('tests.test', ['test' => $test]);
-  } 
-  public function getStartTest($test_id, $page_id){
+  }
+  public function getStartTest($test_id, $page_number){
     $test = Test::findOrFail($test_id);
-    $page = TestPage::findOrFail($test_id);
-    return view('tests.test-start', ['test' => $test, 'page' => $page_id]);
+    $pages = TestPage::where('test_id', $test_id)->get();
+    return view('tests.test-start', ['test' => $test, 'page' => $pages[$page_number-1]]);
   }
 }
