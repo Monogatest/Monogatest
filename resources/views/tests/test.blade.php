@@ -22,11 +22,11 @@
 	        	<div class="article text-left">
 	        	<div class="text-center">
 	        		<h3 class="text-center">Details</h3>
-		        	<a href="{{ route('tests.test.start', ['test_id'=>$test->id, 'page_id'=>'1']) }}" class="btn btn-monogatest-lg">START TEST</a>
+		        	<a href="{{ route('tests.test.prepare', ['test_id'=>$test->id]) }}" class="btn btn-monogatest-lg">START TEST</a>
 	        	</div>
 	        		Reference: <a target="_blank" href="{{ $test->reference_url }}">{{ $test->reference_name }}</a><br />
 							Author: {{ $test->user->first_name }} at: {{$test->created_at->format('d/M/Y')}}
-						
+
 	        	</div>
 	      </div>
     	</div><!-- Row -->

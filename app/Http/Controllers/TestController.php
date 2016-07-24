@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Test;
 use App\TestPage;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Redirect;
 
 class TestController extends Controller
 {
@@ -17,6 +18,9 @@ class TestController extends Controller
   public function getTest($test_id){
     $test = Test::findOrFail($test_id);
     return view('tests.test', ['test' => $test]);
+  }
+  public function getPrepareTest($test_id){
+    return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
     $test = Test::findOrFail($test_id);

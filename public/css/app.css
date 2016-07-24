@@ -8340,7 +8340,7 @@ footer {
     text-align: center;
     color: transparent;
     text-shadow: 0px 0px 0px #4285f4;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.4em; }
 
 .sticky-footer {
@@ -8358,7 +8358,7 @@ footer {
     text-align: center;
     color: transparent;
     text-shadow: 0px 0px 0px #4285f4;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.4em; }
   .sticky-footer .test-answers input[type="checkbox"], .sticky-footer .test-answers input[type="radio"] {
     border: 0;

@@ -7,10 +7,10 @@
 			</div>
 		</div>
 		<div class="col-md-10 col-md-pull-2">
-			<p class="question-excert">獤ちょる谦か 誣へぐ饯槣 覌 <input class="form-control" type="text" readonly value="へ|ぐ" /> よ餯㫤, 骣と饣禨を</p>
+			<p class="question-excert">獤ちょる谦か 誣へぐ饯槣 覌 <input id="test-input" class="form-control" type="text" readonly value="" lang="ja" /> よ餯㫤, 骣と饣禨を</p>
 		</div>
 		<div class="col-md-12">
-			<div class="test-answers" lang="ja">
+			<div class="test-answers">
 				<input type="radio" name="answer" id="answer1" value="へ"><label for="answer1">へ</label>
 				<input type="radio" name="answer" id="answer2" value="て"><label for="answer2">て</label>
 				<input type="radio" name="answer" id="answer3" value="で"><label for="answer3">で</label>
