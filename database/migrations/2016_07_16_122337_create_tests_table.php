@@ -19,6 +19,7 @@ class CreateTestsTable extends Migration
           $table->string('reference_name');
           $table->string('reference_url');
           $table->string('poster');
+          $table->boolean('published')->default(false);
           $table->timestamps();
         });
     }

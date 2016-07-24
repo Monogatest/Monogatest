@@ -21,6 +21,6 @@ class TestController extends Controller
   public function getStartTest($test_id, $page_number){
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
-    return view('tests.test-start', ['test' => $test, 'page' => $pages[$page_number-1]]);
+    return view('tests.test-start', ['test' => $test, 'page' => $pages[$page_number-1], 'page_number' => $page_number, 'page_count' => $pages->count()]);
   }
 }

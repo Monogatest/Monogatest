@@ -7944,6 +7944,11 @@ body {
       .navbar-accent .navbar-toggle:hover .icon-bar {
         background-color: #fff; }
 
+.navbar-test .navbar-nav li a {
+  padding: 0; }
+  .navbar-test .navbar-nav li a:hover {
+    background: none; }
+
 .vcenter {
   display: inline-block;
   vertical-align: middle;
@@ -8088,7 +8093,8 @@ input[type=radio].with-font, input[type=checkbox].with-font {
   display: inline-block;
   cursor: pointer;
   background-color: #c5001c;
-  color: #fff; }
+  color: #fff;
+  text-align: center; }
   .icon-container-dark i {
     font-size: 2.5em; }
   .icon-container-dark.disabled {
@@ -8326,7 +8332,7 @@ footer {
 
 .test-page-content {
   text-align: left;
-  margin-bottom: 50px;
+  margin-bottom: 450px;
   line-height: 2.5em; }
   .test-page-content .form-control {
     width: 15em;
@@ -8344,6 +8350,8 @@ footer {
   right: 0;
   bottom: 0;
   padding: 20px; }
+  .sticky-footer .footer-nav-buttons {
+    margin-bottom: 20px; }
   .sticky-footer .form-control {
     width: 15em;
     display: inline-block;
@@ -8381,6 +8389,8 @@ footer {
   .test-section .monogatest-card, .test-section .monogatest-card-small {
     margin: 40px 0; }
   .monogatest-card-small img {
-    height: auto; } }
+    height: auto; }
+  .sticky-footer .test-answers input[type="checkbox"] + label, .sticky-footer .test-answers input[type="radio"] + label {
+    padding: 0.4em; } }
 
 /*# sourceMappingURL=app.css.map */
