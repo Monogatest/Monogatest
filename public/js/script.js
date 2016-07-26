@@ -34,7 +34,7 @@ $('.content-animate-fadeInRight').addClass("hide-content").viewportChecker({
 */
 
 
-$("input[name^='question']").first().focus();
+
 
 $(".footer-nav-buttons .icon-container-dark:first-child").click(function(){
     if(value > 1){
@@ -76,6 +76,18 @@ $("input[name^='question']").focus(function(){
             }
         });
     }
+    beforeString = this.previousSibling.nodeValue;
+    if(beforeString.length > 15){
+        beforeString = "..." + beforeString.substring(beforeString.length - 15 + 1);
+    }
+    afterString = this.nextSibling.nodeValue;
+    if(afterString.length > 15){
+        afterString = afterString.substring(0, 15) + "...";
+    }
+
+    $(".question-before").text(beforeString);
+    $(".question-after").text(afterString);
+
 });
 
 $("input[type='radio'][id^='answer']").change(function(){
@@ -85,5 +97,7 @@ $("input[type='radio'][id^='answer']").change(function(){
         question.val($(this).val());
     }
 });
+
+$("input[name^='question']").first().focus();
 
 });

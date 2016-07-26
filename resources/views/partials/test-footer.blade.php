@@ -7,7 +7,7 @@
 			</div>
 		</div>
 		<div class="col-md-10 col-md-pull-2">
-			<p class="question-excert">獤ちょる谦か 誣へぐ饯槣 覌 <input id="test-input" class="form-control" type="text" readonly value="" lang="ja" /> よ餯㫤, 骣と饣禨を</p>
+			<p class="question-excerpt"><span class="question-before"></span> <input id="test-input" class="form-control" type="text" readonly value="" lang="ja" /> <span class="question-after"></span></p>
 		</div>
 		<div class="col-md-12">
 			<div class="test-answers">
