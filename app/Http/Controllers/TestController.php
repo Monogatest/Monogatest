@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Test;
 use App\TestPage;
+use App\Question;
+use App\Answer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 
@@ -25,6 +27,14 @@ class TestController extends Controller
   public function getStartTest($test_id, $page_number){
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
-    return view('tests.test-start', ['test' => $test, 'page' => $pages[$page_number-1], 'page_number' => $page_number, 'page_count' => $pages->count()]);
+    $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
+    $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get();
+    return view('tests.test-start', ['test' => $test, 
+                'page' => $pages[$page_number-1], 
+                'page_number' => $page_number, 
+                'page_count' => $pages->count(),
+                'questions' => $questions,
+                'answers' => $answers
+                ]);
   }
 }

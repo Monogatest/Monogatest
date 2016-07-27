@@ -15,6 +15,18 @@
 	    </div>
 			<article class="col-lg-12 test-page-content">
 				{!! $page->content !!}
+				@foreach($questions as $question)
+					<div>{{ $question->id }}</div>
+					<ul>
+						@foreach($answers as $answer)
+							@if ($answer->question_id == $question->id)
+							<li>
+								{{$answer->value}}
+							</li>
+							@endif
+						@endforeach
+					</ul>
+				@endforeach
 			</article>
 
     </div><!-- Row -->

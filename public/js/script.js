@@ -88,6 +88,13 @@ $("input[name^='question']").focus(function(){
     $(".question-before").text(beforeString);
     $(".question-after").text(afterString);
 
+    $('.test-answers').empty();
+
+    answers = $(this).data("answers").split('|');
+    $.each(answers, function( index, value ) {
+        $('.test-answers').append("<input name='answer' id='answer" + (index+1) + "' value='" + value + "' type='radio'><label for='answer" + (index+1) + "'>" + value + "</label>");
+    });
+
 });
 
 $("input[type='radio'][id^='answer']").change(function(){
