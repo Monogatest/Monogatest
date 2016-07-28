@@ -56,6 +56,14 @@ $("input[name^='question']").focus(function(){
     $("input[type='radio'][id^='answer']").prop('checked', false);
     $("input[id='test-input']").val('');
     value = $(this).index("input[name^='question']") + 1;
+
+    $('.test-answers').empty();
+
+    answers = $(this).data("answers").split('|');
+    $.each(answers, function( index, value ) {
+        $('.test-answers').append("<input name='answer' id='answer" + (index+1) + "' value='" + value + "' type='radio'><label for='answer" + (index+1) + "'>" + value + "</label>");
+    });
+    
     $(".footer-nav-buttons .icon-container-dark").removeClass('disabled');
     if(value == 1){
         $(".footer-nav-buttons .icon-container-dark:first-child").addClass('disabled');
@@ -72,7 +80,6 @@ $("input[name^='question']").focus(function(){
                 $(this).prop('checked', true);
                 $("input[id='test-input']").val(answer);
                 console.log('current answers: ' + $(this).val());
-
             }
         });
     }
@@ -88,22 +95,18 @@ $("input[name^='question']").focus(function(){
     $(".question-before").text(beforeString);
     $(".question-after").text(afterString);
 
-    $('.test-answers').empty();
 
-    answers = $(this).data("answers").split('|');
-    $.each(answers, function( index, value ) {
-        $('.test-answers').append("<input name='answer' id='answer" + (index+1) + "' value='" + value + "' type='radio'><label for='answer" + (index+1) + "'>" + value + "</label>");
-    });
-
-});
-
-$("input[type='radio'][id^='answer']").change(function(){
+    $("input[type='radio'][id^='answer']").change(function(){
     if($(this).is(":checked")){
         question = $("input[name='question" + value + "']");
         $("input[id='test-input']").val($(this).val());
         question.val($(this).val());
     }
+    });
+
 });
+
+
 
 $("input[name^='question']").first().focus();
 
