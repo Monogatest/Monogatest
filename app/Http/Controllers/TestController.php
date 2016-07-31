@@ -28,13 +28,17 @@ class TestController extends Controller
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
-    $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get();
-    return view('tests.test-start', ['test' => $test, 
-                'page' => $pages[$page_number-1], 
-                'page_number' => $page_number, 
-                'page_count' => $pages->count(),
-                'questions' => $questions,
-                'answers' => $answers
-                ]);
+    $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
+    foreach ($answers as $key => $value) {
+        $answers[$key] = $answers[$key]->implode('value', '|');
+    }
+    return view('tests.test-start', [
+        'test' => $test,
+        'page' => $pages[$page_number-1],
+        'page_number' => $page_number,
+        'page_count' => $pages->count(),
+        'questions' => $questions,
+        'answers' => $answers
+        ]);
   }
 }

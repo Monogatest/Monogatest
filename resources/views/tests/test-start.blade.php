@@ -14,21 +14,16 @@
 	    	<img src="{{ $page->image }}" alt="{{ $page->test->title }}" />
 	    </div>
 			<article class="col-lg-12 test-page-content">
+                <?php
+                $page->content = preg_replace_callback(
+                    "^\[(question*?)(\d)+\]^",
+                    function ($matches)use ($answers){
+                        return "<input class='form-control' type='text' value='' name='question$matches[2]' data-answers='{$answers[$matches[2]]}' readonly />";
+                    },
+                     $page->content);
+                ?>
 				{!! $page->content !!}
-				@foreach($questions as $question)
-					<div>{{ $question->id }}</div>
-					<ul>
-						@foreach($answers as $answer)
-							@if ($answer->question_id == $question->id)
-							<li>
-								{{$answer->value}}
-							</li>
-							@endif
-						@endforeach
-					</ul>
-				@endforeach
 			</article>
-
     </div><!-- Row -->
     </section>
 	</div>

@@ -36,7 +36,7 @@ $('.content-animate-fadeInRight').addClass("hide-content").viewportChecker({
 
 
 
-$(".footer-nav-buttons .icon-container-dark:first-child").click(function(){
+$(".footer-nav-buttons .icon-container-dark.previous").click(function(){
     if(value > 1){
         $("input[name^='question']").get(value-2).focus();
     }else{
@@ -44,7 +44,7 @@ $(".footer-nav-buttons .icon-container-dark:first-child").click(function(){
     }
 });
 
-$(".footer-nav-buttons .icon-container-dark:last-child").click(function(){
+$(".footer-nav-buttons .icon-container-dark.next").click(function(){
     if(value < question_count){
         $("input[name^='question']").get(value).focus();
     }else{
@@ -63,7 +63,7 @@ $("input[name^='question']").focus(function(){
     $.each(answers, function( index, value ) {
         $('.test-answers').append("<input name='answer' id='answer" + (index+1) + "' value='" + value + "' type='radio'><label for='answer" + (index+1) + "'>" + value + "</label>");
     });
-    
+
     $(".footer-nav-buttons .icon-container-dark").removeClass('disabled');
     if(value == 1){
         $(".footer-nav-buttons .icon-container-dark:first-child").addClass('disabled');
