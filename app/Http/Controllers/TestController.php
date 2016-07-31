@@ -30,7 +30,7 @@ class TestController extends Controller
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
     $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
     foreach ($answers as $key => $value) {
-        $answers[$key] = $answers[$key]->implode('value', '|');
+        $answers[$key] = $answers[$key]->shuffle()->implode('value', '|');
     }
     return view('tests.test-start', [
         'test' => $test,
