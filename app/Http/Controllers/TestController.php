@@ -32,6 +32,12 @@ class TestController extends Controller
     foreach ($answers as $key => $value) {
         $answers[$key] = $answers[$key]->shuffle()->implode('value', '|');
     }
+
+    // dd($test);
+    // dd($pages[$page_number-1]);
+    // dd($pages);
+    // dd($questions);
+    // dd($answers);
     return view('tests.test-start', [
         'test' => $test,
         'page' => $pages[$page_number-1],
