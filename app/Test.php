@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Test extends Model
 {
-  public function user(){
-    return $this->belongsTo('App\User');
-  }
+    protected $fillable = ['user_id', 'title', 'reference_name', 'reference_url', 'poster', 'published'];
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
