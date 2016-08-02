@@ -80,3 +80,13 @@ Route::get('/tests/create', [
   'as' => 'tests.create.test',
   'uses' => 'TestController@getCreateTest'
 ]);
+
+Route::post('/test/submit_answer', [
+  'uses' => 'TestController@postStoreAnswer',
+  'as' => 'storeTestAnswer'
+]);
+
+Route::get('/test/get_answers', [
+  'uses' => 'TestController@getStoreAnswer',
+  'as' => 'getTestAnswer'
+]);

@@ -16,17 +16,21 @@
 		<div class="row">
 	      <div class="col-md-6">
 	        	<h3>{{ $test->title }}</h3>
-						<img src="{{ $test->poster }}" alt="{{ $test->title }}" />
+						<div class="test-page-image">
+							<img class="image-responsive" src="{{ $test->poster }}" alt="{{ $test->title }}" />
+						</div>
 	      </div>
 	      <div class="col-md-6">
 	        	<div class="article text-left">
-	        	<div class="text-center">
-	        		<h3 class="text-center">Details</h3>
-		        	<a href="{{ route('tests.test.prepare', ['test_id'=>$test->id]) }}" class="btn btn-monogatest-lg">START TEST</a>
-	        	</div>
-	        		Reference: <a target="_blank" href="{{ $test->reference_url }}">{{ $test->reference_name }}</a><br />
-							Author: {{ $test->user->first_name }} at: {{$test->created_at->format('d/M/Y')}}
-
+    	        	<div class="">
+    	        		<h3 class="text-center text-center">Details</h3>
+                        <i class="fa fa-copyright"></i> Reference: <a target="_blank" href="{{ $test->reference_url }}">{{ $test->reference_name }}</a><br />
+                        <i class="fa fa-files-o"></i> Number of Pages: <strong>{{$pages}}</strong><br />
+                        <i class="fa fa-question"></i> Number of Questions: <strong>{{$questions}}</strong><br />
+    										<i class="fa fa-user"></i> Author: {{ $test->user->first_name }}<br />
+												<i class="fa fa-calendar"></i> Publish Date: {{$test->created_at->format('d/M/Y')}}
+    	        	</div>
+                    <div class="text-center margin-top"><a href="{{ route('tests.test.prepare', ['test_id'=>$test->id]) }}" class="btn btn-monogatest-lg">START TEST</a></div>
 	        	</div>
 	      </div>
     	</div><!-- Row -->

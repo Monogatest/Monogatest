@@ -19,9 +19,16 @@ class TestController extends Controller
   }
   public function getTest($test_id){
     $test = Test::findOrFail($test_id);
-    return view('tests.test', ['test' => $test]);
+    $pages = TestPage::where('test_id', $test_id)->get();
+    $questions = Question::whereIn('page_id', $pages->pluck('id'))->get();
+    return view('tests.test', ['test' => $test, 'pages' => $pages->count(), 'questions' => $questions->count()]);
   }
-  public function getPrepareTest($test_id){
+  public function getPrepareTest(Request $request, $test_id){
+    if($request->session()->has('test_id')){
+      $request->session()->forget('test_id');
+    }
+    $request->session()->put('test_id', $test_id);
+    $request->session()->put('question_answer', array());
     return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
@@ -30,7 +37,7 @@ class TestController extends Controller
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
     $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
     foreach ($answers as $key => $value) {
-        $answers[$key] = $answers[$key]->shuffle()->implode('value', '|');
+        $answers[$key] = $value->shuffle()->implode('value', '|');
     }
 
     // dd($test);
@@ -47,4 +54,24 @@ class TestController extends Controller
         'answers' => $answers
         ]);
   }
+  public function postStoreAnswer(Request $request){
+    $this->validate($request, [
+      'answer' => 'required'
+    ]);
+    $qas = $request->session()->get('question_answer');
+
+    foreach($qas as $qa){
+      if($qa['quesion_id'] == $request['question_id']){
+        $qa['answer'] = $request['answer'];
+      }
+    }
+    $request->session()->set('question_answer', $qas);
+    // $qas([$request['question_id'] => $request['answer']]);
+    return response()->json(['test_id' => $request['test_id'], 'question_id' => $request['question_id'], 'answer' => $request['answer'], 'qas'=>$qas], 200);
+  }
+
+  public function getStoreAnswer(Request $request){
+    return $request->session()->get('question_answer');
+  }
+
 }

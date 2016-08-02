@@ -1,6 +1,5 @@
 @import "bourbon/bourbon"
 @import "customVariables"
-
 //
 // |--------------------------------------------------------------------------
 // | Globals
@@ -14,6 +13,8 @@ body
   font-size: 15px
   line-height: 1.5
   font-family: "Open Sans", $font-family-sans-serif
+.margin-top
+  margin-top: 2em
 .navbar
   margin: 0
   padding: 20px 0
@@ -59,7 +60,6 @@ body
 .vcenter
   display: inline-block
   vertical-align: middle
-  float: none
 a, button
   &:hover, &:focus
     outline: 0 !important
@@ -467,10 +467,10 @@ footer
 // |--------------------------------------------------------------------------
 // |
 .test-page-image
+  display: inline-block
   border: 5px solid $accent-dark
   max-width: 500px
   margin: 10px auto 50px
-  padding: 10px 20px
 .test-page-content
   text-align: left
   margin-bottom: 450px

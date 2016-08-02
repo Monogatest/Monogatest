@@ -7911,6 +7911,9 @@ body {
   line-height: 1.5;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
+.margin-top {
+  margin-top: 2em; }
+
 .navbar {
   margin: 0;
   padding: 20px 0; }
@@ -7951,8 +7954,7 @@ body {
 
 .vcenter {
   display: inline-block;
-  vertical-align: middle;
-  float: none; }
+  vertical-align: middle; }
 
 a:hover, a:focus, button:hover, button:focus {
   outline: 0 !important; }
@@ -8325,10 +8327,10 @@ footer {
       color: #fff; }
 
 .test-page-image {
+  display: inline-block;
   border: 5px solid #ac0018;
   max-width: 500px;
-  margin: 10px auto 50px;
-  padding: 10px 20px; }
+  margin: 10px auto 50px; }
 
 .test-page-content {
   text-align: left;

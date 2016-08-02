@@ -1,6 +1,7 @@
 $( document ).ready(function() {
     var value = 1;
     var question_count = $("input[name^='question']").length;
+    var testid = $(".test-page-content").data("testid");
   // Handler for .ready() called.
   $("img").mousedown(function(){
     return false;
@@ -70,16 +71,13 @@ $("input[name^='question']").focus(function(){
     }if(value == question_count){
         $(".footer-nav-buttons .icon-container-dark:last-child").addClass('disabled');
     }
-    console.log('value: ' + value);
     answer = $(this).val();
-    console.log('answer: ' + answer);
 
     if(answer!=''){
         $("input[type='radio'][id^='answer']").each(function(index){
             if($(this).val() == answer){
                 $(this).prop('checked', true);
                 $("input[id='test-input']").val(answer);
-                console.log('current answers: ' + $(this).val());
             }
         });
     }
@@ -101,10 +99,28 @@ $("input[name^='question']").focus(function(){
         question = $("input[name='question" + value + "']");
         $("input[id='test-input']").val($(this).val());
         question.val($(this).val());
+
+
+        $.ajax({
+          method: 'POST',
+          url: url,
+          data: {question_id: value, test_id: testid, answer: $(this).val(), _token: token}
+        })
+        .done(function(msg){
+          console.log(JSON.stringify(msg));
+        });
     }
     });
 
 });
+
+setInterval(
+        function(){
+            $.get( url2, function( data ) {
+                 $('#session').text(JSON.stringify(data));
+            });
+        },500
+    );
 
 
 
