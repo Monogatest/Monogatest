@@ -9,6 +9,7 @@ use App\Question;
 use App\Answer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class TestController extends Controller
 {
@@ -24,11 +25,11 @@ class TestController extends Controller
     return view('tests.test', ['test' => $test, 'pages' => $pages->count(), 'questions' => $questions->count()]);
   }
   public function getPrepareTest(Request $request, $test_id){
-    if($request->session()->has('test_id')){
-      $request->session()->forget('test_id');
+    if(Session::has('test_id')){
+      Session::forget('test_id');
     }
-    $request->session()->put('test_id', $test_id);
-    $request->session()->put('question_answer', array());
+    Session::put('test_id', $test_id);
+    Session::put('question.answer', array());
     return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
@@ -58,20 +59,22 @@ class TestController extends Controller
     $this->validate($request, [
       'answer' => 'required'
     ]);
-    $qas = $request->session()->get('question_answer');
+    $question_id = $request['question_id'];
+    $answer = $request['answer'];
 
-    foreach($qas as $qa){
-      if($qa['quesion_id'] == $request['question_id']){
-        $qa['answer'] = $request['answer'];
-      }
+    $index = array_search($question_id, $selection = Session::get('question.answer', []));
+    if ($index !== false){
+        array_splice($selection, $index, 1);
+    }else{
+        $selection[] = $question_id;
     }
-    $request->session()->set('question_answer', $qas);
-    // $qas([$request['question_id'] => $request['answer']]);
-    return response()->json(['test_id' => $request['test_id'], 'question_id' => $request['question_id'], 'answer' => $request['answer'], 'qas'=>$qas], 200);
+
+    Session::set('question.answer', $question_id);
+    return response()->json(['test_id' => $request['test_id'], 'question_id' => $question_id, 'answer' => $answer, 'qas'=>$question_id], 200);
   }
 
   public function getStoreAnswer(Request $request){
-    return $request->session()->get('question_answer');
+    return Session::get('question.answer');
   }
 
 }
