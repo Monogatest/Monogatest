@@ -1,30 +1,27 @@
 $( document ).ready(function() {
-    var value = 1;
-    var question_count = $("input[name^='question']").length;
-    var testid = $(".test-page-content").data("testid");
   // Handler for .ready() called.
   $("img").mousedown(function(){
     return false;
 });
 $('.collapse').on('show.bs.collapse', function(){
-		$(this).prev('.panel-heading').addClass("collapsed");
+        $(this).prev('.panel-heading').addClass("collapsed");
 });
 
 $('.collapse').on('hide.bs.collapse', function(){
-		$(this).prev('.panel-heading').removeClass("collapsed");
+        $(this).prev('.panel-heading').removeClass("collapsed");
 });
 
 $('.content-animate-fadeInDown').addClass("hide-content").viewportChecker({
-	classToAdd: 'show-content animated fadeInDown',
-	offset: 100
+    classToAdd: 'show-content animated fadeInDown',
+    offset: 100
 });
 $('.content-animate-fadeInLeft').addClass("hide-content").viewportChecker({
-	classToAdd: 'show-content animated fadeInLeft',
-	offset: 100
+    classToAdd: 'show-content animated fadeInLeft',
+    offset: 100
 });
 $('.content-animate-fadeInRight').addClass("hide-content").viewportChecker({
-	classToAdd: 'show-content animated fadeInRight',
-	offset: 100
+    classToAdd: 'show-content animated fadeInRight',
+    offset: 100
 });
 
 
@@ -35,11 +32,15 @@ $('.content-animate-fadeInRight').addClass("hide-content").viewportChecker({
 */
 
 
+    var first_value = parseInt($("input[name^='question']").first().attr('name').substr(8));
+    var value = first_value;
+    var question_count = $("input[name^='question']").length + value -1;
+    var testid = $(".test-page-content").data("testid");
 
 
 $(".footer-nav-buttons .icon-container-dark.previous").click(function(){
-    if(value > 1){
-        $("input[name^='question']").get(value-2).focus();
+    if(value > first_value){
+        $("input[name='question" + (value-1) + "']").focus();
     }else{
         $("input[name^='question']").first().focus();
     }
@@ -47,7 +48,7 @@ $(".footer-nav-buttons .icon-container-dark.previous").click(function(){
 
 $(".footer-nav-buttons .icon-container-dark.next").click(function(){
     if(value < question_count){
-        $("input[name^='question']").get(value).focus();
+         $("input[name='question" + (value+1) + "']").focus();
     }else{
         $("input[name^='question']").last().focus();
     }
@@ -56,20 +57,21 @@ $(".footer-nav-buttons .icon-container-dark.next").click(function(){
 $("input[name^='question']").focus(function(){
     $("input[type='radio'][id^='answer']").prop('checked', false);
     $("input[id='test-input']").val('');
-    value = $(this).index("input[name^='question']") + 1;
-
+    value = parseInt($(this).attr('name').substr(8));
     $('.test-answers').empty();
+
 
     answers = $(this).data("answers").split('|');
     $.each(answers, function( index, value ) {
         $('.test-answers').append("<input name='answer' id='answer" + (index+1) + "' value='" + value + "' type='radio'><label for='answer" + (index+1) + "'>" + value + "</label>");
     });
 
-    $(".footer-nav-buttons .icon-container-dark").removeClass('disabled');
-    if(value == 1){
-        $(".footer-nav-buttons .icon-container-dark:first-child").addClass('disabled');
+    $(".footer-nav-buttons .icon-container-dark.previous").removeClass('disabled');
+    $(".footer-nav-buttons .icon-container-dark.next").removeClass('disabled');
+    if(value == first_value){
+        $(".footer-nav-buttons .icon-container-dark.previous").addClass('disabled');
     }if(value == question_count){
-        $(".footer-nav-buttons .icon-container-dark:last-child").addClass('disabled');
+        $(".footer-nav-buttons .icon-container-dark.next").addClass('disabled');
     }
     answer = $(this).val();
 
@@ -114,16 +116,24 @@ $("input[name^='question']").focus(function(){
 
 });
 
-setInterval(
-        function(){
-            $.get( url2, function( data ) {
-                 $('#session').text(JSON.stringify(data));
-            });
-        },500
-    );
+// setInterval(
+//         function(){
+//             $.get( url2, function( data ) {
+//                 console.log(data);
+//             });
+//         },500
+//     );
 
+
+
+
+$(".test-page-content").css( "margin-bottom", $(".sticky-footer").outerHeight()*2);
+$(".collapse-footer").on('click', function(){
+    $(this).children($('i')).toggleClass('fa-angle-down');
+    $(this).children($('i')).toggleClass('fa-angle-up');
+    $('.sticky-footer').toggleClass('collapsed');
+});
 
 
 $("input[name^='question']").first().focus();
-
 });

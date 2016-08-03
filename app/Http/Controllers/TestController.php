@@ -29,7 +29,7 @@ class TestController extends Controller
       Session::forget('test_id');
     }
     Session::put('test_id', $test_id);
-    Session::put('question.answer', array());
+    Session::put('question.answer', []);
     return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
@@ -40,6 +40,7 @@ class TestController extends Controller
     foreach ($answers as $key => $value) {
         $answers[$key] = $value->shuffle()->implode('value', '|');
     }
+    $session_answers = Session::get('question.answer');
 
     // dd($test);
     // dd($pages[$page_number-1]);
@@ -52,7 +53,8 @@ class TestController extends Controller
         'page_number' => $page_number,
         'page_count' => $pages->count(),
         'questions' => $questions,
-        'answers' => $answers
+        'answers' => $answers,
+        'session_answers' => $session_answers,
         ]);
   }
   public function postStoreAnswer(Request $request){
@@ -62,15 +64,18 @@ class TestController extends Controller
     $question_id = $request['question_id'];
     $answer = $request['answer'];
 
-    $index = array_search($question_id, $selection = Session::get('question.answer', []));
-    if ($index !== false){
-        array_splice($selection, $index, 1);
-    }else{
-        $selection[] = $question_id;
-    }
+    // $index = array_search($question_id, $selection = Session::get('question.answer', []));
+    // if ($index !== false){
+    //     // array_splice($selection, $index, 1);
+    //     $selection[$index] = $answer;
+    // }else{
+    //     $selection[$question_id] = $answer;
+    // }
+    $selection = Session::get('question.answer', []);
+    $selection[$question_id] = $answer;
 
-    Session::set('question.answer', $question_id);
-    return response()->json(['test_id' => $request['test_id'], 'question_id' => $question_id, 'answer' => $answer, 'qas'=>$question_id], 200);
+    Session::set('question.answer', $selection);
+    return response()->json(['test_id' => $request['test_id'], 'question_id' => $question_id, 'answer' => $answer, 'qas'=>$selection, 'index'=>$index], 200);
   }
 
   public function getStoreAnswer(Request $request){

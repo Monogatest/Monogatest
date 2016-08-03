@@ -18,8 +18,9 @@
                 <?php
                 $page->content = preg_replace_callback(
                     "^\[(question*?)(\d)+\]^",
-                    function ($matches)use ($answers){
-                        return "<input class='form-control' type='text' value='' name='question$matches[2]' data-answers='{$answers[$matches[2]]}' readonly />";
+                    function ($matches) use ($answers, $session_answers){
+                        $user_answer = isset($session_answers[$matches[2]])?  $session_answers[$matches[2]] : '';
+                        return "<input class='form-control' type='text' value='$user_answer' name='question$matches[2]' data-answers='{$answers[$matches[2]]}' readonly />";
                     },
                      $page->content);
                 ?>

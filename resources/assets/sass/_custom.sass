@@ -55,7 +55,7 @@ body
     li
       a
         padding: 0
-        &:hover
+        &:hover, &:focus, &:active
           background: none
 .vcenter
   display: inline-block
@@ -470,6 +470,7 @@ footer
   display: inline-block
   border: 5px solid $accent-dark
   max-width: 500px
+  width: 100%
   margin: 10px auto 50px
 .test-page-content
   text-align: left
@@ -490,6 +491,10 @@ footer
   right: 0
   bottom: 0
   padding: 20px
+  +transform(translateY(0%))
+  +transition(transform 0.5s)
+  &.collapsed
+    +transform(translateY(100%))
   .footer-nav-buttons
     margin-bottom: 20px
   .form-control
@@ -524,6 +529,15 @@ footer
           color: $body-bg
           border-color: $body-bg
           +scale(1.1)
+  .collapse-footer
+    position: absolute
+    display: inline-block
+    right: 1em
+    top: -1em
+    color: #F00
+    font-size: 3em
+    cursor: pointer
+    line-height: 1
 
 
 // |
