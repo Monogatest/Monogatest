@@ -7947,10 +7947,12 @@ body {
       .navbar-accent .navbar-toggle:hover .icon-bar {
         background-color: #fff; }
 
-.navbar-test .navbar-nav li a {
-  padding: 0; }
-  .navbar-test .navbar-nav li a:hover, .navbar-test .navbar-nav li a:focus, .navbar-test .navbar-nav li a:active {
-    background: none; }
+.navbar-test .navbar-nav {
+  color: #fff; }
+  .navbar-test .navbar-nav li a {
+    padding: 0; }
+    .navbar-test .navbar-nav li a:hover, .navbar-test .navbar-nav li a:focus, .navbar-test .navbar-nav li a:active {
+      background: none; }
 
 .vcenter {
   display: inline-block;

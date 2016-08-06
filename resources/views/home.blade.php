@@ -15,6 +15,7 @@ MonogaTest
 	 <div class="logo-title">
 		 <img src="/images/home-title.svg" alt="MonogaTest" />
 	 </div>
+	 <a class="btn btn-monogatest margin-top" href="{{ route('tests') }}">Visit Tests Page</a>
 	 <div class="go-down"><a href="#about" class="page-scroll"><i class="fa fa-angle-double-down fa-5x" aria-hidden="true"></i></a></div>
 </header>
 	@include('partials.home-nav')

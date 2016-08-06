@@ -36,24 +36,26 @@ class TestController extends Controller
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
-    $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
-    foreach ($answers as $key => $value) {
-        $answers[$key] = $value->shuffle()->implode('value', '|');
-    }
+    // $answers = Answer::whereIn('question_id', $questions->pluck('id'))->question()->question_number;
+    // $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
+    // $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
+    // $answers = Answer::all()->question()->where('page_id', $pages[$page_number-1]->id)->get();
+    // foreach ($answers as $key => $value) {
+    //     $answers[$key] = $value->shuffle()->implode('value', '|');
+    // }
     $session_answers = Session::get('question.answer');
 
+    // dd($answers);
     // dd($test);
     // dd($pages[$page_number-1]);
-    // dd($pages);
     // dd($questions);
-    // dd($answers);
+    // dd($questions->pluck('question_number'));
     return view('tests.test-start', [
         'test' => $test,
         'page' => $pages[$page_number-1],
         'page_number' => $page_number,
         'page_count' => $pages->count(),
         'questions' => $questions,
-        'answers' => $answers,
         'session_answers' => $session_answers,
         ]);
   }

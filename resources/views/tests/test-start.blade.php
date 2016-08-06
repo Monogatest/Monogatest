@@ -15,15 +15,22 @@
 	    	<img src="{{ $page->image }}" alt="{{ $page->test->title }}" />
 	    </div>
 			<article class="col-lg-12 test-page-content" data-testid="{{ $test->id }}">
-                <?php
-                $page->content = preg_replace_callback(
-                    "^\[(question*?)(\d)+\]^",
-                    function ($matches) use ($answers, $session_answers){
-                        $user_answer = isset($session_answers[$matches[2]])?  $session_answers[$matches[2]] : '';
-                        return "<input class='form-control' type='text' value='$user_answer' name='question$matches[2]' data-answers='{$answers[$matches[2]]}' readonly />";
-                    },
-                     $page->content);
-                ?>
+	      <?php
+				// $question_number = 5;
+				// $answers1 = $questions->where('question_number', $question_number)->keyBy('question_number');
+				// $answers1 = $answers1[$question_number]->answers->shuffle()->implode('value', '|');
+
+	      $page->content = preg_replace_callback(
+	          "^\[(question*?)(\d)+\]^",
+	          function ($matches) use ($questions, $session_answers){
+								$question_number = intval($matches[2]);
+	              $user_answer = isset($session_answers[$question_number])?  $session_answers[$question_number] : '';
+								$answers1 = $questions->where('question_number', $question_number)->keyBy('question_number')[$question_number]->answers->shuffle()->implode('value', '|');
+								// $answers1 = $answers1;
+								// dd($answers1);
+	              return "<input class='form-control' type='text' value='$user_answer' name='question$question_number' data-answers='{$answers1}' readonly />";
+	          }, $page->content);
+	      ?>
 				{!! $page->content !!}
 			</article>
     </div><!-- Row -->

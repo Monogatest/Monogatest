@@ -10,4 +10,7 @@ class Test extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    public function testPages(){
+      return $this->hasMany('App\TestPage');
+    }
 }

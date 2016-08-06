@@ -20,5 +20,17 @@ class TestTableSeeder extends Seeder
             'published' => true
           ]);
         $test->save();
+        $test = new Test([
+            'user_id' => 1,
+            'title' => 'わらしべ長者',
+            'reference_name' => 'トリップアドバイザー',
+            'reference_url' => 'https://www.tripadvisor.jp/',
+            'poster' => 'http://web-japan.org/kidsweb/folk/warashibe/images/choja.gif',
+            'published' => true
+          ]);
+        $test->save();
+
+
+
     }
 }
