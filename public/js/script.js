@@ -36,7 +36,7 @@ $('.content-animate-fadeInRight').addClass("hide-content").viewportChecker({
     var value = first_value;
     var question_count = $("input[name^='question']").length + value -1;
     var testid = $(".test-page-content").data("testid");
-
+    var total_questions = $(".icon-container-dark.submit").data("questions");
 
 $(".footer-nav-buttons .icon-container-dark.previous").click(function(){
     if(value > first_value){
@@ -101,15 +101,19 @@ $("input[name^='question']").focus(function(){
         question = $("input[name='question" + value + "']");
         $("input[id='test-input']").val($(this).val());
         question.val($(this).val());
-
-
         $.ajax({
           method: 'POST',
           url: url,
-          data: {question_id: value, test_id: testid, answer: $(this).val(), _token: token}
+          data: {question_number: value, test_id: testid, answer: $(this).val(), _token: token}
         })
         .done(function(msg){
-          console.log(JSON.stringify(msg));
+            if(Object.keys(msg.qas).length == total_questions){
+                $(".icon-container-dark.submit").removeClass("disabled");
+            }else{
+                $(".icon-container-dark.submit").addClass("disabled");
+            }
+            $('#session').text(msg.qas.length);
+            console.log(JSON.stringify(msg));
         });
     }
     });

@@ -7,6 +7,7 @@
 			<div class="footer-nav-buttons">
 				<div class="icon-container-dark previous"><i class="fa fa-angle-left"></i></div>
 				<div class="icon-container-dark next"><i class="fa fa-angle-right"></i></div>
+				<div class="icon-container-dark submit disabled" data-questions="{{ $question_count }}"><i class="fa fa-share-square"></i> Submit</div>
 			</div>
 		</div>
 		<div class="col-md-9 col-md-pull-3">

@@ -52,7 +52,7 @@ class TestController extends Controller
     //     $answers[$key] = $value->shuffle()->implode('value', '|');
     // }
     $session_answers = Session::get('question.answer');
-
+    $question_count = Question::whereIn('page_id', $pages->pluck('id'))->get()->count();
     // dd($answers);
     // dd($test);
     // dd($pages[$page_number-1]);
@@ -65,27 +65,31 @@ class TestController extends Controller
         'page_count' => $pages->count(),
         'questions' => $questions,
         'session_answers' => $session_answers,
+        'question_count' => $question_count,
         ]);
   }
   public function postStoreAnswer(Request $request){
     $this->validate($request, [
       'answer' => 'required'
     ]);
-    $question_id = $request['question_id'];
+    $question_number = $request['question_number'];
     $answer = $request['answer'];
 
-    // $index = array_search($question_id, $selection = Session::get('question.answer', []));
+    // $index = array_search($question_number, $selection = Session::get('question.answer', []));
     // if ($index !== false){
     //     // array_splice($selection, $index, 1);
     //     $selection[$index] = $answer;
     // }else{
-    //     $selection[$question_id] = $answer;
+    //     $selection[$question_number] = $answer;
     // }
     $selection = Session::get('question.answer', []);
-    $selection[$question_id] = $answer;
+    $selection[$question_number] = $answer;
 
     Session::set('question.answer', $selection);
-    return response()->json(['test_id' => $request['test_id'], 'question_id' => $question_id, 'answer' => $answer, 'qas'=>$selection, 'index'=>$index], 200);
+    return response()->json(['test_id' => $request['test_id'], 'question_number' => $question_number, 'answer' => $answer, 'qas'=>$selection], 200);
+    return response()->json(['test_id' => $request['test_id'], 'question_number' => $question_number, 'answer' => $answer, 'qas'=>$selection, 'index'=>$index], 200);
+
+
   }
 
   public function getStoreAnswer(Request $request){

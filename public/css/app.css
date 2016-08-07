@@ -7947,11 +7947,13 @@ body {
       .navbar-accent .navbar-toggle:hover .icon-bar {
         background-color: #fff; }
 
-.navbar-test .navbar-nav {
-  color: #fff; }
-  .navbar-test .navbar-nav li a {
+.navbar-test .navbar-right.navbar-icons {
+  color: #fff;
+  float: left;
+  display: inline-block; }
+  .navbar-test .navbar-right.navbar-icons li a {
     padding: 0; }
-    .navbar-test .navbar-nav li a:hover, .navbar-test .navbar-nav li a:focus, .navbar-test .navbar-nav li a:active {
+    .navbar-test .navbar-right.navbar-icons li a:hover, .navbar-test .navbar-right.navbar-icons li a:focus, .navbar-test .navbar-right.navbar-icons li a:active {
       background: none; }
 
 .vcenter {
@@ -8090,22 +8092,29 @@ input[type=radio].with-font, input[type=checkbox].with-font {
       background-color: #777777; }
 
 .icon-container-dark {
-  width: 3em;
-  height: 3em;
-  padding: 0.1em;
+  width: 2.5em;
+  height: 2.5em;
   border: 1px solid #fff;
   margin: 0 2px;
-  display: inline-block;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   cursor: pointer;
   background-color: #c5001c;
-  color: #fff;
-  text-align: center; }
+  color: #fff; }
   .icon-container-dark i {
-    font-size: 2.5em; }
+    font-size: 1.5em; }
   .icon-container-dark.disabled {
     border-color: rgba(255, 255, 255, 0.3);
     color: rgba(255, 255, 255, 0.3);
     cursor: not-allowed; }
+  .icon-container-dark.submit {
+    width: 5.8em; }
+    .icon-container-dark.submit i {
+      margin-right: 5px; }
 
 .hide-content {
   opacity: 0; }
@@ -8355,7 +8364,6 @@ footer {
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 20px;
   transform: translateY(0%);
   transition: transform 0.5s; }
   .sticky-footer.collapsed {
@@ -8405,11 +8413,19 @@ footer {
 @media (max-width: 767px) {
   .navbar {
     padding: 0; }
+    .navbar li {
+      clear: both; }
   .test-section .monogatest-card, .test-section .monogatest-card-small {
     margin: 40px 0; }
   .monogatest-card-small img {
     height: auto; }
   .sticky-footer .test-answers input[type="checkbox"] + label, .sticky-footer .test-answers input[type="radio"] + label {
-    padding: 0.4em; } }
+    padding: 0.4em; }
+  .navbar-test .navbar-right.navbar-icons {
+    clear: both;
+    width: 100%;
+    text-align: center; }
+    .navbar-test .navbar-right.navbar-icons li {
+      display: inline-block; } }
 
 /*# sourceMappingURL=app.css.map */
