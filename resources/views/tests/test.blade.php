@@ -8,11 +8,16 @@
 	@include('partials.app-nav')
 	<div class="container section">
     <section class="col-md-9">
+			@if(Session::has('abort'))
+				<div class="alert alert-danger" role="alert">
+					{!! Session::get('abort') !!}
+				</div>
+			@endif
     	@if(!Auth::check())
     		<div class="alert alert-danger" role="alert">
-			  <a href="{{ route('auth.login') }}" class="alert-link">Login</a> To save this test in your history
-			</div>
-		@endif
+				  <a href="{{ route('auth.login') }}" class="alert-link">Login</a> To save this test in your history
+				</div>
+			@endif
 		<div class="row">
 	      <div class="col-md-6">
 	        	<h3>{{ $test->title }}</h3>

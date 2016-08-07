@@ -7988,7 +7988,8 @@ input[type=radio].with-font, input[type=checkbox].with-font {
     content: "\f096";
     font-size: 1.2em;
     color: #333333;
-    width: 1.2em; }
+    width: 1.2em;
+    font-weight: initial; }
   input[type=radio].with-font:checked + label, input[type=checkbox].with-font:checked + label {
     color: #4285f4; }
     input[type=radio].with-font:checked + label:before, input[type=checkbox].with-font:checked + label:before {

@@ -33,6 +33,14 @@ class TestController extends Controller
     return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
+    if(!Session::has('test_id')){
+      Session::flash('abort', '<strong>This test was terminated or not started properly!</strong>');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
+    if(Session::get('test_id') != $test_id){
+      Session::flash('abort', '<strong>Test:</strong> ' . Session::get('test_id') . ' is already running');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
