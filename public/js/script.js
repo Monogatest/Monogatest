@@ -104,13 +104,15 @@ $("input[name^='question']").focus(function(){
         $.ajax({
           method: 'POST',
           url: url,
-          data: {question_number: value, test_id: testid, answer: $(this).val(), _token: token}
+          data: {question_number: value, test_id: testid, beforeString: beforeString, answer: $(this).val(), afterString: afterString, _token: token}
         })
         .done(function(msg){
             if(Object.keys(msg.qas).length == total_questions){
                 $(".icon-container-dark.submit").removeClass("disabled");
+                $(".icon-container-dark.submit").parent().attr("href", reviewUrl);
             }else{
                 $(".icon-container-dark.submit").addClass("disabled");
+                $(".icon-container-dark.submit").parent().removeAttr("href");
             }
             $('#session').text(msg.qas.length);
             console.log(JSON.stringify(msg));

@@ -66,9 +66,19 @@ Route::get('/tests/{test_id}', [
   'uses' => 'TestController@getTest'
 ]);
 
-Route::get('/tests/{test_id}/test/', [
+Route::get('/tests/{test_id}/test', [
   'as' => 'tests.test.prepare',
   'uses' => 'TestController@getPrepareTest'
+]);
+
+Route::get('/tests/{test_id}/test/review', [
+  'as' => 'tests.test.review',
+  'uses' => 'TestController@getTestReview'
+]);
+
+Route::get('/tests/{test_id}/test/submit', [
+  'as' => 'tests.test.submit',
+  'uses' => 'TestController@getSubmitTest'
 ]);
 
 Route::get('/tests/{test_id}/test/{page_number}', [
@@ -82,11 +92,12 @@ Route::get('/tests/create', [
 ]);
 
 Route::post('/test/submit_answer', [
-  'uses' => 'TestController@postStoreAnswer',
-  'as' => 'storeTestAnswer'
+  'as' => 'storeTestAnswer',
+  'uses' => 'TestController@postStoreAnswer'
 ]);
 
 Route::get('/test/get_answers', [
-  'uses' => 'TestController@getStoreAnswer',
-  'as' => 'getTestAnswer'
+  'as' => 'getTestAnswer',
+  'uses' => 'TestController@getStoreAnswer'
 ]);
+

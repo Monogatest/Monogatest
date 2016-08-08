@@ -74,16 +74,12 @@ class TestController extends Controller
     ]);
     $question_number = $request['question_number'];
     $answer = $request['answer'];
-
-    // $index = array_search($question_number, $selection = Session::get('question.answer', []));
-    // if ($index !== false){
-    //     // array_splice($selection, $index, 1);
-    //     $selection[$index] = $answer;
-    // }else{
-    //     $selection[$question_number] = $answer;
-    // }
+    $beforeString = $request['beforeString'];
+    $afterString = $request['afterString'];
     $selection = Session::get('question.answer', []);
-    $selection[$question_number] = $answer;
+
+    $compact_answer = array("beforeString" => $beforeString, "answer"=> $answer, "afterString" => $afterString);
+    $selection[$question_number] = $compact_answer;
 
     Session::set('question.answer', $selection);
     return response()->json(['test_id' => $request['test_id'], 'question_number' => $question_number, 'answer' => $answer, 'qas'=>$selection], 200);
@@ -95,5 +91,41 @@ class TestController extends Controller
   public function getStoreAnswer(Request $request){
     return Session::get('question.answer');
   }
+
+  public function getTestReview(Request $request, $test_id){
+    $test = Test::findOrFail($test_id);
+    $pages = TestPage::where('test_id', $test_id)->get();
+    $questions = Question::whereIn('page_id', $pages->pluck('id'))->get();
+    $session_answers = Session::get('question.answer');
+    if(count($session_answers) != $questions->count()){
+      return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
+    }
+
+    return view('tests.test-review', [
+        'test' => $test,
+        'pages' => $pages,
+        'questions' => $questions,
+        'session_answers' => $session_answers,
+        ]);
+  }
+
+
+  public function getSubmitTest(Request $request, $test_id){
+    $test = Test::findOrFail($test_id);
+    $pages = TestPage::where('test_id', $test_id)->get();
+    $questions = Question::whereIn('page_id', $pages->pluck('id'))->get()->keyBy('question_number');
+    $session_answers = Session::get('question.answer');
+    if(count($session_answers) != $questions->count()){
+      return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
+    }
+    return view('tests.test-submit', [
+        'test' => $test,
+        'pages' => $pages,
+        'questions' => $questions,
+        'session_answers' => $session_answers,
+        ]);
+  }
+
+
 
 }

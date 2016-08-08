@@ -24,7 +24,7 @@
 	          "^\[(question*?)(\d)+\]^",
 	          function ($matches) use ($questions, $session_answers){
 								$question_number = intval($matches[2]);
-	              $user_answer = isset($session_answers[$question_number])?  $session_answers[$question_number] : '';
+	              $user_answer = isset($session_answers[$question_number])?  $session_answers[$question_number]["answer"] : '';
 								$answers1 = $questions->where('question_number', $question_number)->keyBy('question_number')[$question_number]->answers->shuffle()->implode('value', '|');
 								// $answers1 = $answers1;
 								// dd($answers1);
@@ -42,5 +42,6 @@
 	 var token = '{{ Session::token() }}';
 	 var url = "{{ route('storeTestAnswer') }}";
 	 var url2 = "{{ route('getTestAnswer') }}";
+	 var reviewUrl = "{{ route('tests.test.review', ['test_id' => $test->id]) }}";
 	 </script>
 @endsection

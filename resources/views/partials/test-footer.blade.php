@@ -7,7 +7,8 @@
 			<div class="footer-nav-buttons">
 				<div class="icon-container-dark previous"><i class="fa fa-angle-left"></i></div>
 				<div class="icon-container-dark next"><i class="fa fa-angle-right"></i></div>
-				<div class="icon-container-dark submit disabled" data-questions="{{ $question_count }}"><i class="fa fa-share-square"></i> Submit</div>
+				<?php $isActive = count($session_answers) == $question_count; ?>
+				<a @if($isActive) href="{{ route('tests.test.review', ['test_id' => $test->id]) }}" @endif><div class="icon-container-dark submit {{ $isActive? '' : 'disabled' }}" data-questions="{{ $question_count }}"><i class="fa fa-share-square"></i> Submit</div></a>
 			</div>
 		</div>
 		<div class="col-md-9 col-md-pull-3">

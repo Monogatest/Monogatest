@@ -8156,6 +8156,14 @@ input[type=radio].with-font, input[type=checkbox].with-font {
     opacity: 1;
     transform: translateX(0); } }
 
+.buttons-containter .btn {
+  margin: 1em;
+  display: block; }
+  .buttons-containter .btn.btn-default {
+    border-radius: 0px; }
+  .buttons-containter .btn i {
+    margin-right: 0.5em; }
+
 .home-header {
   background-image: url(/images/home-bg.png);
   background-size: cover;
