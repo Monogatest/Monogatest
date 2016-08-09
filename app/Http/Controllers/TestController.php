@@ -110,7 +110,7 @@ class TestController extends Controller
   }
 
 
-  public function getSubmitTest(Request $request, $test_id){
+  public function getTestResult(Request $request, $test_id){
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::whereIn('page_id', $pages->pluck('id'))->get()->keyBy('question_number');
@@ -118,11 +118,33 @@ class TestController extends Controller
     if(count($session_answers) != $questions->count()){
       return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
     }
-    return view('tests.test-submit', [
+
+
+
+
+
+    $user_answers = $session_answers;
+    $mark = 0;
+    $total = $questions->count();
+    foreach($questions as $key => $question){
+      foreach($question->answers as $answer){
+        if($user_answers[$key]['answer'] == $answer->value){
+          $user_answers[$key]['status'] = $answer->status == 1;
+          if($user_answers[$key]['status']){
+            $mark++;
+          }
+        } 
+      }
+    }
+
+    // dd($user_answers);
+    return view('tests.test-result', [
         'test' => $test,
         'pages' => $pages,
         'questions' => $questions,
-        'session_answers' => $session_answers,
+        'user_answers' => $user_answers,
+        'mark' => $mark,
+        'total' => $total,
         ]);
   }
 

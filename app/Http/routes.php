@@ -76,9 +76,9 @@ Route::get('/tests/{test_id}/test/review', [
   'uses' => 'TestController@getTestReview'
 ]);
 
-Route::get('/tests/{test_id}/test/submit', [
-  'as' => 'tests.test.submit',
-  'uses' => 'TestController@getSubmitTest'
+Route::get('/tests/{test_id}/test/result', [
+  'as' => 'tests.test.result',
+  'uses' => 'TestController@getTestResult'
 ]);
 
 Route::get('/tests/{test_id}/test/{page_number}', [

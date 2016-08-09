@@ -20,7 +20,7 @@
           </ol>
           <div class="buttons-containter">
             <a href="{{ route('tests.test.start', ['test_id' => $test->id, 'page_number' => $pages->count()]) }}" class="btn btn-default col-md-3 col-md-push-2"><i class="fa fa-chevron-left"></i> Edit Answers</a>
-            <a href="{{ route('tests.test.submit', ['test_id' => $test->id]) }}" class="btn btn-monogatest col-md-3 col-md-push-4"><i class="fa fa-check-square"></i> Submit Test</a></div>
+            <a href="{{ route('tests.test.result', ['test_id' => $test->id]) }}" class="btn btn-monogatest col-md-3 col-md-push-4"><i class="fa fa-check-square"></i> Submit Test</a></div>
         </div>
       </div>
     </div>
