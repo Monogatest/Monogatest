@@ -7903,6 +7903,9 @@ button.close {
   overflow: visible;
   clip: auto; }
 
+.text-primary {
+  color: #4285f4; }
+
 :lang(ja) {
   font-family: 'Noto Sans Japanese', sans-serif; }
 
