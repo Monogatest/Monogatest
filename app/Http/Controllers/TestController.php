@@ -142,7 +142,7 @@ class TestController extends Controller
       }
 
       // $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Your past score is: ' . $current_user_tests->sortByDesc('id')->first()->pivot->score . '%';
-      $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Last time you scored: <strong>' . $last_score . '%</strong> on this test';
+      $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Last time you have scored: <strong>' . $last_score . '%</strong> on this test';
     }
 
 
