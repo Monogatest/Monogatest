@@ -13,4 +13,8 @@ class Test extends Model
     public function testPages(){
       return $this->hasMany('App\TestPage');
     }
+
+    public function test_users(){
+      return $this->belongsToMany('App\User')->withPivot('id', 'score')->withTimestamps();
+    }
 }

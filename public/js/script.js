@@ -133,7 +133,6 @@ $("input[name^='question']").focus(function(){
 
 
 
-$(".test-page-content").css( "margin-bottom", $(".sticky-footer").outerHeight()*2);
 $(".collapse-footer").on('click', function(){
     $(this).children($('i')).toggleClass('fa-angle-down');
     $(this).children($('i')).toggleClass('fa-angle-up');
@@ -142,4 +141,5 @@ $(".collapse-footer").on('click', function(){
 
 
 $("input[name^='question']").first().focus();
+$(".test-page-content").delay(500).css( "margin-bottom", $(".sticky-footer").outerHeight());
 });

@@ -10,6 +10,7 @@ use App\Answer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Auth;
 
 class TestController extends Controller
 {
@@ -83,9 +84,6 @@ class TestController extends Controller
 
     Session::set('question.answer', $selection);
     return response()->json(['test_id' => $request['test_id'], 'question_number' => $question_number, 'answer' => $answer, 'qas'=>$selection], 200);
-    return response()->json(['test_id' => $request['test_id'], 'question_number' => $question_number, 'answer' => $answer, 'qas'=>$selection, 'index'=>$index], 200);
-
-
   }
 
   public function getStoreAnswer(Request $request){
@@ -113,16 +111,11 @@ class TestController extends Controller
   public function getTestResult(Request $request, $test_id){
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
-    $questions = Question::whereIn('page_id', $pages->pluck('id'))->get()->keyBy('question_number');
+    $questions = Question::whereIn('page_id', $pages->pluck('id'))->get()->sortBy('question_number')->keyBy('question_number');
     $session_answers = Session::get('question.answer');
     if(count($session_answers) != $questions->count()){
       return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
     }
-
-
-
-
-
     $user_answers = $session_answers;
     $mark = 0;
     $total = $questions->count();
@@ -133,9 +126,25 @@ class TestController extends Controller
           if($user_answers[$key]['status']){
             $mark++;
           }
-        } 
+        }
       }
     }
+
+    $last_score = null;
+    if(Auth::check()){
+      $current_user_tests = $test->test_users->where('id', Auth::user()->id);
+      $last_id = 0;
+      foreach($current_user_tests as $user){
+        if($user->pivot->id > $last_id){
+          $last_score = $user->pivot->score;
+          $last_id = $user->pivot->id;
+        }
+      }
+
+      // $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Your past score is: ' . $current_user_tests->sortByDesc('id')->first()->pivot->score . '%';
+      $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Last time you scored: <strong>' . $last_score . '%</strong> on this test';
+    }
+
 
     // dd($user_answers);
     return view('tests.test-result', [
@@ -145,6 +154,7 @@ class TestController extends Controller
         'user_answers' => $user_answers,
         'mark' => $mark,
         'total' => $total,
+        'last_score' => $last_score,
         ]);
   }
 

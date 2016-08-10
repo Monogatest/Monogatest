@@ -26,4 +26,7 @@ class User extends Authenticatable
     public function tests(){
       return $this->hasMany('App\Test');
     }
+    public function tests_taken(){
+      return $this->belongsToMany('App\Test')->withPivot('id', 'score')->withTimestamps();
+    }
 }

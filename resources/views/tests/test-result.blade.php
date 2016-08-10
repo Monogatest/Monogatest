@@ -12,19 +12,17 @@
     <div class="col-md-8 col-md-push-2">
       <div class="panel panel-default">
         <div class="panel-body">
-          <p class="text-right">{{ Auth::check() ? "Logged in as " . Auth::user()->first_name : "Not Logged in"}}</p>
+          <p class="text-right margin-zero">{{ Auth::check() ? "Logged in as " . Auth::user()->first_name : "Not Logged in"}}</p>
           <h3>Your Answers</h3>
           <p lang="ja">
           @foreach($user_answers as $key => $answer)
-
-            {{$key}}. <span class="{{$answer['status'] ? 'text-info' : 'text-danger'}}">{{$answer['answer']}}</span>
+            {{$key}}. <strong class="{{$answer['status'] ? 'text-info' : 'text-danger'}}">{{$answer['answer']}}</strong>
           @endforeach
           </p>
-          <h3>Test Key Answers</h3>
           <h3>your score: {{$mark}}/{{$total}}</h3>
           <?php
             $mark = $mark*100/$total;
-            $color = 'danger'; 
+            $color = 'danger';
             if($mark >= 90) $color = 'success active';
             else if($mark >= 80) $color = 'info';
             else if($mark >= 50) $color = 'warning';
@@ -35,6 +33,13 @@
               {{$mark}}%
             </div>
           </div>
+          <div class="buttons-containter clearfix">
+            <a class="btn btn-monogatest margin-top col-md-3 col-md-push-2" href="{{ route('tests') }}">Back to tests</a>
+            <a class="btn btn-default margin-top col-md-3 col-md-push-4" href="{{ route('tests.test', ['test_id' => $test->id]) }}">Retake this test</a>
+          </div>
+          @if(Auth::check())
+            <p class="text-right text-muted margin-zero">{!! $last_score !!}</p>
+          @endif
         </div>
       </div>
     </div>
