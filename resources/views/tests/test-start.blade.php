@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('title')
 {{ $test->title }} | MonogaTest
 @endsection
@@ -38,10 +37,13 @@
 	</div>
 
 	 @include('partials.test-footer')
+	 @push('test')
 	 <script type="text/javascript">
 	 var token = '{{ Session::token() }}';
 	 var url = "{{ route('storeTestAnswer') }}";
 	 var url2 = "{{ route('getTestAnswer') }}";
 	 var reviewUrl = "{{ route('tests.test.review', ['test_id' => $test->id]) }}";
 	 </script>
+	 <script src="/js/test.js"></script>
+	 @endpush
 @endsection

@@ -20,5 +20,6 @@
 	<script src="/js/scrolling-nav.js"></script>
 	<script src="/js/viewportchecker.js"></script>
 	<script src="/js/script.js"></script>
+	@stack('test')
 </body>
 </html>
