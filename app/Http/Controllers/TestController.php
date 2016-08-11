@@ -14,6 +14,11 @@ use Auth;
 
 class TestController extends Controller
 {
+  function initializeSession($test_id){
+    Session::put('test_id', $test_id);
+    Session::put('question.answer', []);
+  }
+
 
   public function getAllTests(){
     $tests = Test::all();
@@ -26,11 +31,11 @@ class TestController extends Controller
     return view('tests.test', ['test' => $test, 'pages' => $pages->count(), 'questions' => $questions->count()]);
   }
   public function getPrepareTest(Request $request, $test_id){
-    if(Session::has('test_id')){
-      Session::forget('test_id');
+    if(!Session::has('test_id')){
+      $this->initializeSession($test_id);
+    }else if(Session::get('test_id') != $test_id){
+      $this->initializeSession($test_id);
     }
-    Session::put('test_id', $test_id);
-    Session::put('question.answer', []);
     return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
   }
   public function getStartTest($test_id, $page_number){
@@ -39,7 +44,7 @@ class TestController extends Controller
       return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
     }
     if(Session::get('test_id') != $test_id){
-      Session::flash('abort', '<strong>Test:</strong> ' . Session::get('test_id') . ' is already running');
+      Session::flash('abort', '<strong>Error: </strong><span lang="ja">' . Test::findOrFail(Session::get('test_id'))->title . '</span> is currently running');
       return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
     }
     $test = Test::findOrFail($test_id);
@@ -95,6 +100,14 @@ class TestController extends Controller
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::whereIn('page_id', $pages->pluck('id'))->get();
     $session_answers = Session::get('question.answer');
+    if(!Session::has('test_id')){
+      Session::flash('abort', '<strong>This test was terminated or not started properly!</strong>');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
+    if($test_id != Session::get('test_id')){
+      Session::flash('abort', '<strong>Error: </strong><span lang="ja">' . Test::findOrFail(Session::get('test_id'))->title . '</span> is currently running');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
     if(count($session_answers) != $questions->count()){
       return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
     }
@@ -113,6 +126,14 @@ class TestController extends Controller
     $pages = TestPage::where('test_id', $test_id)->get();
     $questions = Question::whereIn('page_id', $pages->pluck('id'))->get()->sortBy('question_number')->keyBy('question_number');
     $session_answers = Session::get('question.answer');
+    if(!Session::has('test_id')){
+      Session::flash('abort', '<strong>This test was terminated or not started properly!</strong>');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
+    if($test_id != Session::get('test_id')){
+      Session::flash('abort', '<strong>Error: </strong><span lang="ja">' . Test::findOrFail(Session::get('test_id'))->title . '</span> is currently running');
+      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+    }
     if(count($session_answers) != $questions->count()){
       return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>$pages->count()]);
     }
@@ -129,7 +150,8 @@ class TestController extends Controller
         }
       }
     }
-
+    Session::forget('question.answer');
+    Session::forget('test_id');
     $last_score = null;
     if(Auth::check()){
       $current_user_tests = $test->test_users->where('id', Auth::user()->id);
