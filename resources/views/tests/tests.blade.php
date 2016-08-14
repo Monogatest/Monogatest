@@ -12,7 +12,7 @@ Tests | MonogaTest
             <h1>Recent Tests</h1>
             <div class="row">
 							@foreach($tests as $test)
-              <div class="col-md-4 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                <div class="monogatest-card-small">
 									<a href="{{ route('tests.test', ['test_id' => $test->id]) }}">
 		                <img src="{{ $test->poster }}" alt="{{ $test->title }}" class="card-image">

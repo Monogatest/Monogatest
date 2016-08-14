@@ -150,8 +150,7 @@ class TestController extends Controller
         }
       }
     }
-    Session::forget('question.answer');
-    Session::forget('test_id');
+
     $last_score = null;
     if(Auth::check()){
       $current_user_tests = $test->test_users->where('id', Auth::user()->id);
@@ -162,12 +161,13 @@ class TestController extends Controller
           $last_id = $user->pivot->id;
         }
       }
-
-      // $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Your past score is: ' . $current_user_tests->sortByDesc('id')->first()->pivot->score . '%';
+      Auth::user()->tests_taken()->save($test, ['score'=>$mark*100/$total]);
       $last_score = $current_user_tests->isEmpty() ? 'This is the first time you take this test' : 'Last time you have scored: <strong>' . $last_score . '%</strong> on this test';
     }
 
 
+    Session::forget('question.answer');
+    Session::forget('test_id');
     // dd($user_answers);
     return view('tests.test-result', [
         'test' => $test,

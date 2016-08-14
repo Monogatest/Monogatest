@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableTestUser extends Migration
+class CreateTestUser extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class CreateTableTestUser extends Migration
              $table->increments('id');
              $table->integer('test_id');
              $table->integer('user_id');
-             $table->integer('score');
+             $table->decimal('score', 5, 2);
              $table->timestamps();
          });
      }
