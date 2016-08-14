@@ -105,3 +105,9 @@ Route::get('/test/get_answers', [
   'uses' => 'TestController@getStoreAnswer'
 ]);
 
+// Users
+
+Route::get('/user/{username}', [
+  'as' => 'getUser',
+  'uses' => 'UserController@getUser'
+  ]);

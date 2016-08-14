@@ -9,7 +9,7 @@
 .text-primary
   color: $brand-primary
 :lang(ja)
-  font-family: 'Noto Sans Japanese', sans-serif
+  font-family: 'Noto Sans Japanese', $font-family-sans-serif
 body
   font-size: 15px
   line-height: 1.5
@@ -182,14 +182,23 @@ input[type=radio].with-font, input[type=checkbox].with-font
   @extend .monogatest-card
   border-width: 5px
   max-width: 182px
-  max-height: 140px
   img
     width: 196px
     height: 110px
-  .title
-    font-size: 13px
+  .test-description
     text-align: left
-    margin: 5px 5px 0 5px
+    margin: 5px
+    .title
+      font-size: 0.9em
+      margin: 0px
+    .test-author
+      color: $gray-dark
+      font-size: 0.8em
+      +transition()
+      &:hover
+        color: $brand-primary
+        text-decoration: underline
+
 
 .sidebar
   text-align: left

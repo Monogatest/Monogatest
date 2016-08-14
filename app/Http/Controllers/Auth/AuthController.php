@@ -52,6 +52,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
+            'username' => 'required|max:30|unique:users|alpha_dash',
             'gender' => 'required',
             'private' => 'required',
             'email' => 'required|email|max:255|unique:users',
@@ -70,6 +71,7 @@ class AuthController extends Controller
         return User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'username' => $data['username'],
             'gender' => $data['gender'],
             'private' => $data['private'],
             'email' => $data['email'],

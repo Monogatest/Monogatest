@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
         $user = new User([
             'first_name' => 'Moh\'d',
             'last_name' => 'Khalil',
+            'username' => 'mohdkhalilsabba',
             'email' => 'mohdkhalilsabba@gmail.com',
             'gender' => 'M',
             'private' => 0,

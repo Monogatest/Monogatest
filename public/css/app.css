@@ -7907,7 +7907,7 @@ button.close {
   color: #4285f4; }
 
 :lang(ja) {
-  font-family: 'Noto Sans Japanese', sans-serif; }
+  font-family: "Noto Sans Japanese", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 body {
   font-size: 15px;
@@ -8080,15 +8080,23 @@ input[type=radio].with-font, input[type=checkbox].with-font {
 
 .monogatest-card-small {
   border-width: 5px;
-  max-width: 182px;
-  max-height: 140px; }
+  max-width: 182px; }
   .monogatest-card-small img {
     width: 196px;
     height: 110px; }
-  .monogatest-card-small .title {
-    font-size: 13px;
+  .monogatest-card-small .test-description {
     text-align: left;
-    margin: 5px 5px 0 5px; }
+    margin: 5px; }
+    .monogatest-card-small .test-description .title {
+      font-size: 0.9em;
+      margin: 0px; }
+    .monogatest-card-small .test-description .test-author {
+      color: #333333;
+      font-size: 0.8em;
+      transition: all 0.15s ease-out 0s; }
+      .monogatest-card-small .test-description .test-author:hover {
+        color: #4285f4;
+        text-decoration: underline; }
 
 .sidebar {
   text-align: left;

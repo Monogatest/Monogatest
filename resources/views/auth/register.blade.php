@@ -33,7 +33,17 @@ Register | MonogaTest
                   </span>
               @endif
             </div>
-            <div class="form-group col-md-12">
+            <div class="form-group col-md-6">
+              {{ Form::label('username', 'Username (Required)') }}
+              {{ Form::text('username', null, array('class' => 'form-control')) }}
+              <small class="text-muted">The username will be visible for other users</small>
+              @if ($errors->has('username'))
+                  <span class="help-block">
+                      <strong>{{ $errors->first('username') }}</strong>
+                  </span>
+              @endif
+            </div>
+            <div class="form-group col-md-6">
               {{ Form::label('email', 'Email Address (Required)') }}
               {{ Form::email('email', null, array('class' => 'form-control')) }}
               @if ($errors->has('email'))
@@ -78,7 +88,7 @@ Register | MonogaTest
         </div>
       </div>
       <p>
-        Already have an account? <a href="{{ route('auth.login') }}" class="btn btn-primary">Login</a>
+        Already have an account? <a href="{{ route('auth.login') }}">Login</a>
       </p>
     </div>
 @endsection

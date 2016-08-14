@@ -45,7 +45,7 @@ Login | MonogaTest
         </div>
       </div>
       <p>
-        Don't have an account? sign up for FREE! <a href="{{ route('auth.register') }}" class="btn btn-primary">Register</a>
+        Don't have an account? sign up for FREE! <a href="{{ route('auth.register') }}">Register</a>
       </p>
     </div>
 @endsection
