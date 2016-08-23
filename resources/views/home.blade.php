@@ -42,25 +42,14 @@ MonogaTest
 							 <div class="col-lg-12">
 									 <h1>Take a Test</h1>
 									 <div class="row">
+									 	@foreach($tests as $test)
 										 <div class="col-md-4 col-sm-6">
-	 									 	<div class="monogatest-card"><a href="#">
-	 									 			<img src="/images/warashibe.jpg" alt="" class="card-image">
-	 									 			<h2 class="title" lang="ja">わらしべ長者</h2>
+	 									 	<div class="monogatest-card"><a href="{{route('tests.test', ['test_id' => $test->id])}}">
+	 									 			<img src="{{$test->poster}}" alt="{{$test->title}}" class="card-image">
+	 									 			<h2 class="title" lang="ja">{{$test->title}}</h2>
 	 									 		</a></div>
 	 									 </div>
-	 									 <div class="col-md-4 col-sm-6">
-	 									 	<div class="monogatest-card"><a href="#">
-	 									 			<img src="/images/warashibe.jpg" alt="" class="card-image">
-	 									 			<h2 class="title">Weeew hrar C++</h2>
-	 									 		</a></div>
-	 									 </div>
-										 <div class="clearfix visible-sm-block"></div>
-	 									 <div class="col-md-4 col-sm-6">
-	 									 	<div class="monogatest-card"><a href="#">
-	 									 			<img src="/images/warashibe.jpg" alt="" class="card-image">
-	 									 			<h2 class="title">Weeew hrar C++</h2>
-	 									 		</a></div>
-	 									 </div>
+	 									 @endforeach
 									 </div>
 										 <div class="row">
 											 <div class="col-lg-12">

@@ -32,8 +32,8 @@
                         <i class="fa fa-copyright"></i> Reference: <a target="_blank" href="{{ $test->reference_url }}">{{ $test->reference_name }}</a><br />
                         <i class="fa fa-files-o"></i> Number of Pages: <strong>{{$pages}}</strong><br />
                         <i class="fa fa-question"></i> Number of Questions: <strong>{{$questions}}</strong><br />
-    										<i class="fa fa-user"></i> Author: {{ $test->user->first_name }}<br />
-												<i class="fa fa-calendar"></i> Publish Date: {{$test->created_at->format('d/M/Y')}}
+						<i class="fa fa-user"></i> Author: <a href="{{ route('getUser', ['username' => $test->user->username]) }}">{{ $test->user->username }}</a><br />
+						<i class="fa fa-calendar"></i> Publish Date: {{$test->created_at->format('d/M/Y')}}
     	        	</div>
                     <div class="text-center margin-top"><a href="{{ route('tests.test.prepare', ['test_id'=>$test->id]) }}" class="btn btn-monogatest-lg">START TEST</a></div>
 	        	</div>

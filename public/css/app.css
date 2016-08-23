@@ -8440,6 +8440,34 @@ footer {
     cursor: pointer;
     line-height: 1; }
 
+.user-info-container {
+  text-align: left; }
+  .user-info-container .profile-photo-container {
+    width: 10em;
+    height: 10em;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 0px 3px #c5001c, 0 0 10px #c5001c; }
+  .user-info-container .bio strong {
+    color: #c5001c; }
+
+.recent-test-container {
+  border: 1px solid #eeeeee;
+  margin: 0 2em 2em;
+  padding: 1em; }
+  .recent-test-container .score-container {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex: 1;
+    flex: 1; }
+
 @media (max-width: 767px) {
   .navbar {
     padding: 0; }

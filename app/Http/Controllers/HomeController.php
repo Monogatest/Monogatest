@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Test;
 
 class HomeController extends Controller
 {
@@ -18,23 +19,14 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-
-    /**
      * Show the home page.
      *
      * @return \Illuminate\Http\Response
      */
     public function home()
     {
-        return view('home');
+        $tests = Test::orderBy('id', 'desc')->take(3)->get();
+        return view('home', ['tests' => $tests]);
     }
 
 

@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->char('gender', 1);
             $table->boolean('private');
             $table->string('password');
+            $table->string('bio', 1000);
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });
