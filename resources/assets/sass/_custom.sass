@@ -46,7 +46,7 @@ body
     &:hover, &:focus
       color: $body-bg
   .navbar-toggle
-    border-color: $gray-lighter
+    border: none
     .icon-bar
       background-color: $gray-lighter
     &:hover
@@ -72,9 +72,13 @@ a, button
     outline: 0 !important
 img
   max-width: 100%
-input[type="text"], input[type="email"], input[type="password"], textarea
+textarea.form-control.vertical-textarea
+  resize: vertical
+  height: 7em
+input[type="text"], input[type="email"], input[type="password"], textarea.form-control
   border-radius: 0 !important
   box-shadow: 0 0
+  resize: none
   &:focus
     box-shadow: 0 0
     border-width: 2px

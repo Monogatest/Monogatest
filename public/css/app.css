@@ -7945,7 +7945,7 @@ body {
     .navbar-accent .navbar-brand:hover, .navbar-accent .navbar-brand:focus {
       color: #fff; }
   .navbar-accent .navbar-toggle {
-    border-color: #eeeeee; }
+    border: none; }
     .navbar-accent .navbar-toggle .icon-bar {
       background-color: #eeeeee; }
     .navbar-accent .navbar-toggle:hover {
@@ -7972,10 +7972,15 @@ a:hover, a:focus, button:hover, button:focus {
 img {
   max-width: 100%; }
 
-input[type="text"], input[type="email"], input[type="password"], textarea {
+textarea.form-control.vertical-textarea {
+  resize: vertical;
+  height: 7em; }
+
+input[type="text"], input[type="email"], input[type="password"], textarea.form-control {
   border-radius: 0 !important;
-  box-shadow: 0 0; }
-  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
+  box-shadow: 0 0;
+  resize: none; }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea.form-control:focus {
     box-shadow: 0 0;
     border-width: 2px;
     border-color: #4285f4; }

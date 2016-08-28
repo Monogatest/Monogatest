@@ -19,46 +19,46 @@ Route::get('/', 'HomeController@home');
 // Login / Logout Routes...
 Route::get('/login', [
   'as' => 'auth.login',
-  'uses' => 'Auth\AuthController@showLoginForm'
+  'uses' => 'Auth\AuthController@showLoginForm',
 ]);
 Route::post('/login', [
   'as' => 'auth.login',
-  'uses' => 'Auth\AuthController@login'
+  'uses' => 'Auth\AuthController@login',
 ]);
 Route::get('/logout', [
   'as' => 'auth.logout',
-  'uses' => 'Auth\AuthController@logout'
+  'uses' => 'Auth\AuthController@logout',
 ]);
 
 // Registration Routes...
 Route::get('/register', [
   'as' => 'auth.register',
-  'uses' => 'Auth\AuthController@showRegistrationForm'
+  'uses' => 'Auth\AuthController@showRegistrationForm',
 ]);
 Route::post('/register', [
   'as' => 'auth.register',
-  'uses' => 'Auth\AuthController@register'
+  'uses' => 'Auth\AuthController@register',
 ]);
 
 // Password Reset Routes...
 Route::get('/password/reset/{token?}', [
   'as' => 'auth.password.reset',
-  'uses' => 'Auth\PasswordController@showResetForm'
+  'uses' => 'Auth\PasswordController@showResetForm',
 ]);
 Route::post('/password/email', [
   'as' => 'auth.password.email',
-  'uses' => 'Auth\PasswordController@sendResetLinkEmail'
+  'uses' => 'Auth\PasswordController@sendResetLinkEmail',
 ]);
 Route::post('/password/reset', [
   'as' => 'auth.password.reset',
-  'uses' => 'Auth\PasswordController@reset'
+  'uses' => 'Auth\PasswordController@reset',
 ]);
 
 
 //  Tests
 Route::get('/tests', [
   'as' => 'tests',
-  'uses' => 'TestController@getAllTests'
+  'uses' => 'TestController@getAllTests',
 ]);
 Route::get('/tests/refresh', function(){
   Session::forget('question.answer');
@@ -67,47 +67,57 @@ Route::get('/tests/refresh', function(){
 
 Route::get('/tests/{test_id}', [
   'as' => 'tests.test',
-  'uses' => 'TestController@getTest'
+  'uses' => 'TestController@getTest',
 ]);
 
 Route::get('/tests/{test_id}/test', [
   'as' => 'tests.test.prepare',
-  'uses' => 'TestController@getPrepareTest'
+  'uses' => 'TestController@getPrepareTest',
 ]);
 
 Route::get('/tests/{test_id}/test/review', [
   'as' => 'tests.test.review',
-  'uses' => 'TestController@getTestReview'
+  'uses' => 'TestController@getTestReview',
 ]);
 
 Route::get('/tests/{test_id}/test/result', [
   'as' => 'tests.test.result',
-  'uses' => 'TestController@getTestResult'
+  'uses' => 'TestController@getTestResult',
 ]);
 
 Route::get('/tests/{test_id}/test/{page_number}', [
   'as' => 'tests.test.start',
-  'uses' => 'TestController@getStartTest'
+  'uses' => 'TestController@getStartTest',
 ]);
 
 Route::get('/tests/create', [
   'as' => 'tests.create.test',
-  'uses' => 'TestController@getCreateTest'
+  'uses' => 'TestController@getCreateTest',
 ]);
 
 Route::post('/test/submit_answer', [
   'as' => 'storeTestAnswer',
-  'uses' => 'TestController@postStoreAnswer'
+  'uses' => 'TestController@postStoreAnswer',
 ]);
 
 Route::get('/test/get_answers', [
   'as' => 'getTestAnswer',
-  'uses' => 'TestController@getStoreAnswer'
+  'uses' => 'TestController@getStoreAnswer',
 ]);
 
 // Users
 
 Route::get('/user/{username}', [
   'as' => 'getUser',
-  'uses' => 'UserController@getUser'
+  'uses' => 'UserController@getUser',
   ]);
+
+Route::get('/user/{username}/edit', [
+  'as' => 'getEditUser',
+  'uses' => 'UserController@getEditUser',
+  ]);
+
+Route::post('/user', [
+  'as' => 'postEditUser',
+  'uses' => 'UserController@postEditUser',
+]);

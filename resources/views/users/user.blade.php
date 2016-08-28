@@ -7,8 +7,6 @@
     @include('partials.app-nav')
     <div class="container section">
       <section class="col-md-9">
-
-        
         <section class="user-info-container clearfix">
         <div class="row">
             <div class="col-sm-4">
@@ -18,13 +16,13 @@
             </div>
             <article class="bio col-sm-8">
                 <h3>{{$user->username}}</h3>
-                <strong>{{$user->first_name}} {{$user->last_name}}</strong> 
+                <strong>{{$user->first_name}} {{$user->last_name}}</strong>
                 {{$user->bio or ''}}
             </article>
         </div>
             @if(Auth::check())
                 @if(Auth::user()->id == $user->id)
-                <a href="" class="pull-right btn btn-info"><i class="fa fa-edit"></i> Edit</a>
+                <a href="{{ route('getEditUser', ['username' => Auth::user()->username]) }}" class="pull-right btn btn-info"><i class="fa fa-edit"></i> Edit</a>
                 @endif
             @endif
         </section>
@@ -46,7 +44,7 @@
             <div class="row tests-container">
                 <h2>Recently {{$user->username}} took the following tests</h2>
                 @foreach($user->tests_taken->sortByDesc('created_at')->take(4) as $test)
-                    
+
                     <div class="recent-test-container">
                         <div class="row clearfix">
                             <div class="col-md-4">
@@ -54,7 +52,7 @@
                                 <img src="{{$test->poster}}" alt="{{$test->title}}">
                             </div><div class="col-md-8 score-container">
                                 <h4 class="score">{{$test->pivot->score}}</h4>
-                                <?php 
+                                <?php
                                     $mark = $test->pivot->score;
                                     $color = 'danger';
                                     if($mark >= 90) $color = 'success active';
