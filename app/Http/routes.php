@@ -116,8 +116,23 @@ Route::get('/user/{username}/edit', [
   'as' => 'getEditUser',
   'uses' => 'UserController@getEditUser',
   ]);
-
-Route::post('/user', [
+Route::get('/user/{username}/edit/privacy_settings', [
+  'as' => 'getEditUserPrivacy',
+  'uses' => 'UserController@getEditUserPrivacy',
+  ]);
+Route::get('/user/{username}/edit/contact_settings', [
+  'as' => 'getEditUserContact',
+  'uses' => 'UserController@getEditUserContact',
+  ]);
+Route::get('/user/{username}/edit/change_password', [
+  'as' => 'getEditUserPassword',
+  'uses' => 'UserController@getEditUserPassword',
+  ]);
+Route::post('/user/edit/profile', [
   'as' => 'postEditUser',
   'uses' => 'UserController@postEditUser',
+]);
+Route::post('/user/edit/privacy', [
+  'as' => 'postEditUserPrivacy',
+  'uses' => 'UserController@postEditUserPrivacy',
 ]);

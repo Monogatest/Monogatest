@@ -31,6 +31,45 @@ class UserController extends Controller
           ]);
     }
 
+    public function getEditUserPrivacy($username){
+      if(!Auth::check()){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      if(!Auth::user()->username == $username){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      $user = User::whereUsername($username)->first();
+      return view('users.edit-user_privacy_settings', [
+              'user' => $user,
+          ]);
+    }
+
+    public function getEditUserContact($username){
+      if(!Auth::check()){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      if(!Auth::user()->username == $username){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      $user = User::whereUsername($username)->first();
+      return view('users.edit-user_contact_settings', [
+              'user' => $user,
+          ]);
+    }
+
+    public function getEditUserPassword($username){
+      if(!Auth::check()){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      if(!Auth::user()->username == $username){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      $user = User::whereUsername($username)->first();
+      return view('users.edit-user_change_password', [
+              'user' => $user,
+          ]);
+    }
+
     public function postEditUser(Request $request){
 
       if(!Auth::check()){
@@ -62,4 +101,25 @@ class UserController extends Controller
       Session::flash('edited', 'You have <strong>Successfully</strong> updated your profile');
       return Redirect::back();
     }
+
+    public function postEditUserPrivacy(Request $request){
+
+      if(!Auth::check()){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+      if(!Auth::user()->username == $request['username']){
+        return Redirect::route('getUser', ['username' => $username]);
+      }
+
+      $user = User::whereUsername($request['username'])->first();
+      $user->private = 0;
+      if(isset($request['private'])){
+        $user->private = 1;
+      }
+      $user->update();
+      Session::flash('edited', 'You have <strong>Successfully</strong> updated your profile');
+      return Redirect::back();
+    }
+
+
 }

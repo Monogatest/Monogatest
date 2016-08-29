@@ -7995,7 +7995,11 @@ input[type=radio].with-font, input[type=checkbox].with-font {
   position: absolute;
   width: 1px; }
   input[type=radio].with-font + label, input[type=checkbox].with-font + label {
-    cursor: pointer; }
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
   input[type=radio].with-font + label:before, input[type=checkbox].with-font + label:before {
     font-family: FontAwesome;
     display: inline-block;
@@ -8472,6 +8476,34 @@ footer {
     flex-direction: column;
     -ms-flex: 1;
     flex: 1; }
+
+section.profile-cp {
+  background-color: #c5001c;
+  text-align: center; }
+  section.profile-cp ul.profile-cp-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    width: 100%; }
+    section.profile-cp ul.profile-cp-list li {
+      font-weight: 600;
+      padding: 7px 0; }
+      section.profile-cp ul.profile-cp-list li a {
+        transition: all 0.15s ease-out 0s;
+        display: block;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+        padding: 0.7em;
+        margin: 0; }
+        section.profile-cp ul.profile-cp-list li a:hover {
+          background: rgba(238, 238, 238, 0.8);
+          color: #c5001c; }
+      section.profile-cp ul.profile-cp-list li.active a {
+        background: #eeeeee;
+        color: #ac0018; }
 
 @media (max-width: 767px) {
   .navbar {

@@ -94,6 +94,7 @@ input[type=radio].with-font, input[type=checkbox].with-font
   width: 1px
   &+ label
     cursor: pointer
+    +user-select(none)
   &+ label:before
     font-family: FontAwesome
     display: inline-block
@@ -607,6 +608,39 @@ footer
     flex-direction: column
     flex: 1
 
+// |
+// |--------------------------------------------------------------------------
+// | User Profile Page
+// |--------------------------------------------------------------------------
+// |
+section.profile-cp
+  background-color: $accent
+  text-align: center
+  ul.profile-cp-list
+    list-style: none
+    padding: 0
+    margin: 0
+    color: $body-bg
+    width: 100%
+    li
+      font-weight: 600
+      padding: 7px 0
+      a
+        +transition()
+        display: block
+        color: $body-bg
+        padding: 0
+        margin: 0
+        text-decoration: none
+        padding: 0.7em
+        margin: 0
+        &:hover
+          background: rgba($gray-lighter, 0.8)
+          color: $accent
+      &.active
+        a
+          background: $gray-lighter
+          color: $accent-dark
 // |
 // |--------------------------------------------------------------------------
 // | Small Screen
