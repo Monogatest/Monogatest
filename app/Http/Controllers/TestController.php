@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Test;
 use App\TestPage;
 use App\Question;
+use App\User;
 use App\Answer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
@@ -24,6 +25,13 @@ class TestController extends Controller
     $tests = Test::all();
     return view('tests.tests', ['tests' => $tests]);
   }
+
+  public function getUserTests($username){
+    $user = User::whereUsername($username)->first();
+    $tests = Test::where('user_id', $user->id)->get();
+    return view('tests.search-username', ['tests' => $tests, 'user' => $user]);
+  }
+
   public function getTest($test_id){
     $test = Test::findOrFail($test_id);
     $pages = TestPage::where('test_id', $test_id)->get();
@@ -178,6 +186,10 @@ class TestController extends Controller
         'total' => $total,
         'last_score' => $last_score,
         ]);
+  }
+
+  public function getCreateTest(){
+    return view('tests.create-test');
   }
 
 

@@ -65,6 +65,12 @@ Route::get('/tests/refresh', function(){
   Session::forget('test_id');
 });
 
+Route::get('/tests/create', [
+  'as' => 'tests.create.test',
+  'uses' => 'TestController@getCreateTest',
+  'middleware' => 'auth',
+]);
+
 Route::get('/tests/{test_id}', [
   'as' => 'tests.test',
   'uses' => 'TestController@getTest',
@@ -90,9 +96,9 @@ Route::get('/tests/{test_id}/test/{page_number}', [
   'uses' => 'TestController@getStartTest',
 ]);
 
-Route::get('/tests/create', [
-  'as' => 'tests.create.test',
-  'uses' => 'TestController@getCreateTest',
+Route::get('/tests/search/user/{username}', [
+  'as' => 'tests.search.user',
+  'uses' => 'TestController@getUserTests',
 ]);
 
 Route::post('/test/submit_answer', [

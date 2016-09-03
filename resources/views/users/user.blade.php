@@ -34,7 +34,7 @@
                     @include('partials.foreach.dump_test_card')
                 @endforeach
             </div>
-            <div class="col-md-12"><a href="" class="btn btn-monogatest">View All</a></div>
+            <div class="col-md-12"><a href="{{ route('tests.search.user', ['username'=>$user->username]) }}" class="btn btn-monogatest">View All</a></div>
             @else
                 <h2>{{ $user->username }} Have not submitted any tests yet</h2>
             @endif
