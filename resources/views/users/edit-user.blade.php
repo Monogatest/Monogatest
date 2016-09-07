@@ -25,11 +25,18 @@ Edit Profile {{ $user->username }} | MonogaTest
           <section class="col-sm-6">
             <h4>Profile Photo (Avatar)</h4>
             <div class="profile-photo-container">
-                <img src="{{$user->avatar}}" alt="{{$user->username}}">
-                {{ Form::hidden('avatar', $user->avatar) }}
+                <img src="{{$user->avatar}}/-/scale_crop/1024x1024/center/-/quality/best/-/progressive/yes/-/resize/250/" alt="{{$user->username}}">
+
             </div>
             <div class="uploadcare">
-              UploadCare
+             {{--  {{ Form::hidden('avatar', $user->avatar, ['role'=>'uploadcare-uploader']) }} --}}
+
+                <input 
+                type="hidden"
+                name="avatar"
+                role="uploadcare-uploader"
+                value="{{$user->avatar}}"
+                > 
             </div>
             <div class="row">
               <div class="form-group col-md-6">
@@ -118,5 +125,13 @@ Edit Profile {{ $user->username }} | MonogaTest
       </section>
       @include('partials.sidebar')
     </div>
+    <script>
+      UPLOADCARE_LOCALE = "en";
+      UPLOADCARE_LIVE = false;
+      UPLOADCARE_PUBLIC_KEY = "433c81261bbe0d482bab";
+      UPLOADCARE_TABS = "file url dropbox";
+    </script>
+    <script src="https://ucarecdn.com/widget/2.10.0/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
+
      @include('partials.home-footer')
 @endsection

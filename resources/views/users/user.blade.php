@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-4">
             <div class="profile-photo-container">
-                <img src="{{$user->avatar}}" alt="{{$user->username}}">
+                <img src="https://ucarecdn.com/{{$user->avatar}}/-/scale_crop/1024x1024/center/-/quality/best/-/progressive/yes/-/resize/250/" alt="{{$user->username}}">
             </div>
             </div>
             <article class="bio col-sm-8">
