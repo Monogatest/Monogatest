@@ -18,30 +18,28 @@ Edit Profile {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          {{Form::open(['route' => 'postEditUser'])}}
+          <form action="{{route('postEditUser')}}" method="post">
           {{ csrf_field() }}
-          {{ Form::hidden('username', $user->username) }}
+          <input type="hidden" name="username" value="{{$user->username}}">
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="col-sm-6">
             <h4>Profile Photo (Avatar)</h4>
             <div class="profile-photo-container">
-                <img src="{{$user->avatar}}/-/scale_crop/1024x1024/center/-/quality/best/-/progressive/yes/-/resize/250/" alt="{{$user->username}}">
-
+                <img src="{{$user->avatar}}-/scale_crop/1024x1024/center/-/quality/best/-/progressive/yes/-/resize/250/" alt="{{$user->username}}">
             </div>
             <div class="uploadcare">
-             {{--  {{ Form::hidden('avatar', $user->avatar, ['role'=>'uploadcare-uploader']) }} --}}
-
-                <input 
+                <input type="hidden" name="avatar" value="avatar" role="uploadcare-uploader">
+                <input
                 type="hidden"
                 name="avatar"
                 role="uploadcare-uploader"
                 value="{{$user->avatar}}"
-                > 
+                >
             </div>
             <div class="row">
               <div class="form-group col-md-6">
-                {{ Form::label('first_name', 'First Name (Required)') }}
-                {{ Form::text('first_name', $user->first_name,  array('class' => 'form-control')) }}
+                <label for="first_name">First Name (Required)</label>
+                <input id="first_name" type="text" name="first_name" value="{{$user->first_name}}" class="form-control">
                 @if ($errors->has('first_name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('first_name') }}</strong>
@@ -49,8 +47,8 @@ Edit Profile {{ $user->username }} | MonogaTest
                 @endif
               </div>
               <div class="form-group col-md-6">
-                {{ Form::label('last_name', 'Last Name (Required)') }}
-                {{ Form::text('last_name', $user->last_name,  array('class' => 'form-control')) }}
+                <label for="last_name">Last Name (Required)</label>
+                <input id="last_name" type="text" name="last_name" value="{{$user->last_name}}" class="form-control">
                 @if ($errors->has('last_name'))
                     <span class="help-block">
                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -60,24 +58,24 @@ Edit Profile {{ $user->username }} | MonogaTest
             </div>
             <div class="row">
               <div class="col-md-12">
-                {{ Form::label('Gender (Required)') }}
+                <label>Gender (Required)</label>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{ Form::radio('gender', 'M', $user->gender == 'M' ? true : false, array('id' => 'male', 'class' => 'with-font')) }}
-                  {{ Form::label('male', 'Male') }}
+                  <input type="radio" name="gender" value="M" {{$user->gender == 'M' ? 'checked' : ''}} id="male" class="with-font">
+                  <label for="male">Male</label>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  {{ Form::radio('gender', 'F', $user->gender == 'F' ? true : false, array('id' => 'female', 'class' => 'with-font')) }}
-                  {{ Form::label('female', 'Female') }}
+                  <input type="radio" name="gender" value="F" {{$user->gender == 'F' ? 'checked' : ''}} id="female" class="with-font">
+                  <label for="female">Female</label>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              {{ Form::label('bio', 'Biography') }}
-              {{ Form::textarea('bio', $user->bio,  array('class' => 'form-control vertical-textarea')) }}
+              <label for="bio">Biography</label>
+              <textarea id="bio" name="bio" class="form-control vertical-textarea">{{$user->bio}}</textarea>
               @if ($errors->has('bio'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('bio') }}</strong>
@@ -89,8 +87,8 @@ Edit Profile {{ $user->username }} | MonogaTest
           <section class="col-sm-6">
             <h4>Social media accounts</h4>
             <div class="form-group">
-              {{ Form::label('facebook', 'Facebook username') }} <i class="fa fa-facebook text-primary"></i> <span class="text-muted"> (e.g. MonogaTest)</span>
-              {{ Form::text('facebook', $user->facebook,  array('class' => 'form-control')) }}
+              <label for="facebook">Facebook username <i class="fa fa-facebook text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
+              <input type="text" name="facebook" id="facebook" value="{{$user->facebook}}" class="form-control">
               @if ($errors->has('facebook'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('facebook') }}</strong>
@@ -98,8 +96,8 @@ Edit Profile {{ $user->username }} | MonogaTest
               @endif
             </div>
             <div class="form-group">
-              {{ Form::label('instagram', 'Instagram username') }} <i class="fa fa-instagram text-primary"></i> <span class="text-muted"> (e.g. MonogaTest)</span>
-              {{ Form::text('instagram', $user->instagram,  array('class' => 'form-control')) }}
+              <label for="instagram">Instagram username <i class="fa fa-instagram text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
+              <input type="text" id="instagram" name="instagram" value="{{$user->instagram}}" class="form-control">
               @if ($errors->has('instagram'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('facebook') }}</strong>
@@ -107,8 +105,8 @@ Edit Profile {{ $user->username }} | MonogaTest
               @endif
             </div>
             <div class="form-group">
-              {{ Form::label('twitter', 'Twitter username') }} <i class="fa fa-twitter text-primary"></i> <span class="text-muted"> (e.g. MonogaTest)</span>
-              {{ Form::text('twitter', $user->twitter,  array('class' => 'form-control')) }}
+              <label for="twitter">Twitter username <i class="fa fa-twitter text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
+              <input type="text" id="twitter" name="twitter" value="{{$user->twitter}}" class="form-control">
               @if ($errors->has('twitter'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('twitter') }}</strong>
@@ -118,9 +116,9 @@ Edit Profile {{ $user->username }} | MonogaTest
           </section>
         </div>
         <div class="form-group">
-          {{ Form::submit('Submit', array('class' => 'btn btn-monogatest')) }}
+          <input type="submit" name="submit" value="Submit" class="btn btn-monogatest">
         </div>
-        {{Form::close()}}
+        </form>
         </section>
       </section>
       @include('partials.sidebar')

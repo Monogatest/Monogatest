@@ -12,7 +12,7 @@ return [
     | services your application utilizes. Set this in your ".env" file.
     |
     */
-
+    'name' => 'MonogaTest',
     'env' => env('APP_ENV', 'production'),
 
     /*

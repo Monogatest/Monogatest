@@ -18,31 +18,29 @@ Change Password {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          {{Form::open(['route' => 'postEditUser'])}}
+          <form action="{{route('postEditUser')}}" method="post">
           {{ csrf_field() }}
-          {{ Form::hidden('username', $user->username) }}
+          <input type="hidden" name="username" value="{{$user->username}}">
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="col-sm-6">
             <div class="form-group">
-              {{ Form::label('current_password', 'Current password (Required)') }}
-              {{ Form::password('current_password',  array('class' => 'form-control')) }}
+              <label for="current_password">Current password (Required)</label>
+              <input type="password" name="current_password" class="form-control">
             </div>
             <div class="form-group">
-              {{ Form::label('new_password', 'New password (Required)') }}
-              {{ Form::password('new_password',  array('class' => 'form-control')) }}
+              <label for="new_password">New password (Required)</label>
+              <input type="password" name="new_password" class="form-control">
             </div>
             <div class="form-group">
-              {{ Form::label('password_confirmation', 'Confirm new password (Required)') }}
-              {{ Form::password('password_confirmation',  array('class' => 'form-control')) }}
+              <label for="password_confirmation">Confirm new password (Required)</label>
+              <input type="password" name="password_confirmation" class="form-control">
             </div>
-
           </section>
-
         </div>
         <div class="form-group">
-          {{ Form::submit('Submit', array('class' => 'btn btn-monogatest')) }}
+          <input type="submit" name="submit" value="Submit" class="btn btn-monogatest">
         </div>
-        {{Form::close()}}
+        </form>
         </section>
       </section>
       @include('partials.sidebar')

@@ -18,43 +18,40 @@ Contact Settings {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          {{Form::open(['route' => 'postEditUser'])}}
+          <form action="{{route('postEditUser')}}" method="post">
           {{ csrf_field() }}
-          {{ Form::hidden('username', $user->username) }}
+          <input type="hidden" name="username" value="{{$user->username}}">
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="col-sm-6">
             <h4>Updates</h4>
             <div class="form-group">
-              {{ Form::checkbox('new_test', 'true', $user->new_test == 1 ? true : false, array('id' => 'new_test', 'class' => 'with-font')) }}
-              {{ Form::label('new_test', 'When a new Test is released') }}
+              <input type="checkbox" id="new_test" name="new_test" value="{{$user->new_test == 1 ? true : false}}" id="new_test" class="with-font">
+              <label for="new_test">When a new Test is released</label>
             </div>
-
             <h4>Community</h4>
             <div class="form-group">
-              {{ Form::checkbox('test_submitted', 'true', $user->test_submitted == 1 ? true : false, array('id' => 'test_submitted', 'class' => 'with-font')) }}
-              {{ Form::label('test_submitted', 'When someone submits my test') }}
+              <input type="checkbox" id="test_submitted" name="test_submitted" value="{{$user->test_submitted == 1 ? true : false}}" id="test_submitted" class="with-font">
+              <label for="test_submitted">When someone submits my test</label>
             </div>
             <div class="form-group">
-              {{ Form::checkbox('test_spammed', 'true', $user->test_spammed == 1 ? true : false, array('id' => 'test_spammed', 'class' => 'with-font')) }}
-              {{ Form::label('test_spammed', 'When one of my tests is marked as spam') }}
+              <input type="checkbox" id="test_spammed" name="test_spammed" value="{{$user->test_spammed == 1 ? true : false}}" id="test_spammed" class="with-font">
+              <label for="test_spammed">When one of my tests is marked as spam</label>
             </div>
             <div class="form-group">
-              {{ Form::checkbox('test_reported', 'true', $user->test_reported == 1 ? true : false, array('id' => 'test_reported', 'class' => 'with-font')) }}
-              {{ Form::label('test_reported', 'When one of my tests is reported') }}
+              <input type="checkbox" id="test_reported" name="test_reported" value="{{$user->test_reported == 1 ? true : false}}" id="test_reported" class="with-font">
+              <label for="test_reported">When one of my tests is reported</label>
             </div>
-
             <h4>Account</h4>
             <div class="form-group">
-              {{ Form::checkbox('password_changed', 'true', $user->password_changed == 1 ? true : false, array('id' => 'password_changed', 'class' => 'with-font')) }}
-              {{ Form::label('password_changed', 'When my password is changed') }}
+              <input type="checkbox" id="password_changed" name="password_changed" value="{{$user->password_changed == 1 ? true : false}}" id="password_changed" class="with-font">
+              <label for="password_changed">When my password is changed</label>
             </div>
-
           </section>
         </div>
-        <div class="form-group">
-          {{ Form::submit('Submit', array('class' => 'btn btn-monogatest')) }}
-        </div>
-        {{Form::close()}}
+            <div class="form-group">
+              <input type="submit" name="submit" value="Submit" class="btn btn-monogatest">
+            </div>
+          </form>
         </section>
       </section>
       @include('partials.sidebar')

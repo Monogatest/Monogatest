@@ -60,10 +60,6 @@ Route::get('/tests', [
   'as' => 'tests',
   'uses' => 'TestController@getAllTests',
 ]);
-Route::get('/tests/refresh', function(){
-  Session::forget('question.answer');
-  Session::forget('test_id');
-});
 
 Route::get('/tests/create', [
   'as' => 'tests.create.test',

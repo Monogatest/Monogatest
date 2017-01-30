@@ -23,9 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('bio', 1000);
             $table->string('avatar');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('instagram');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -13,11 +13,13 @@ Register | MonogaTest
     <div class="col-md-8 col-md-push-2">
       <div class="panel panel-default">
         <div class="panel-body text-left">
-          {{ Form::open(['route' => 'auth.register', 'class' => 'clearfix']) }}
+          <form class="clearfix" action="{{route('auth.register')}}" method="post">
+
             {{ csrf_field() }}
+
             <div class="form-group col-md-6">
-              {{ Form::label('first_name', 'First Name (Required)') }}
-              {{ Form::text('first_name', null,  array('class' => 'form-control')) }}
+              <label for="first_name">First Name (Required)</label>
+              <input type="text" name="first_name" id="first_name" class="form-control">
               @if ($errors->has('first_name'))
                   <span class="help-block">
                       <strong>{{ $errors->first('first_name') }}</strong>
@@ -25,8 +27,8 @@ Register | MonogaTest
               @endif
             </div>
             <div class="form-group col-md-6">
-              {{ Form::label('last_name', 'Last Name (Required)') }}
-              {{ Form::text('last_name', null,  array('class' => 'form-control')) }}
+              <label for="last_name">Last Name (Required)</label>
+              <input type="text" name="last_name" id="last_name" class="form-control">
               @if ($errors->has('last_name'))
                   <span class="help-block">
                       <strong>{{ $errors->first('last_name') }}</strong>
@@ -34,8 +36,8 @@ Register | MonogaTest
               @endif
             </div>
             <div class="form-group col-md-6">
-              {{ Form::label('username', 'Username (Required)') }}
-              {{ Form::text('username', null, array('class' => 'form-control')) }}
+              <label for="username">Username (Required)</label>
+              <input type="text" name="username" id="username" class="form-control">
               <small class="text-muted">The username will be visible for other users</small>
               @if ($errors->has('username'))
                   <span class="help-block">
@@ -44,8 +46,8 @@ Register | MonogaTest
               @endif
             </div>
             <div class="form-group col-md-6">
-              {{ Form::label('email', 'Email Address (Required)') }}
-              {{ Form::email('email', null, array('class' => 'form-control')) }}
+              <label for="email">Email Address (Required)</label>
+              <input type="email" name="email" id="email" class="form-control">
               @if ($errors->has('email'))
                   <span class="help-block">
                       <strong>{{ $errors->first('email') }}</strong>
@@ -53,25 +55,25 @@ Register | MonogaTest
               @endif
             </div>
             <div class="col-md-12">
-              {{ Form::label('Gender (Required)') }}
+              <label>Gender (Required)</label>
             </div>
             <div class="form-group">
               <div class="col-md-6">
-                {{ Form::radio('gender', 'M', false, array('id' => 'male', 'class' => 'with-font')) }}
-                {{ Form::label('male', 'Male') }}
+                <input type="radio" name="gender" value="M" id="male" class="with-font">
+                <label for="male">Male</label>
               </div>
               <div class="col-md-6">
-                {{ Form::radio('gender', 'F', false, array('id' => 'female', 'class' => 'with-font')) }}
-                {{ Form::label('female', 'Female') }}
+                <input type="radio" name="gender" value="F" id="female" class="with-font">
+                <label for="female">Female</label>
               </div>
             </div>
             <div class="form-group col-md-6">
-              {{ Form::label('password', 'Password (Required)') }}
-              {{ Form::password('password',  array('class' => 'form-control')) }}
+              <label for="password">Password (Required)</label>
+              <input type="password" name="password" id="password" class="with-font">
             </div>
             <div class="form-group col-md-6">
-              {{ Form::label('password_confirmation', 'Confirm Password (Required)') }}
-              {{ Form::password('password_confirmation',  array('class' => 'form-control')) }}
+              <label for="password_confirmation">Confirm Password (Required)</label>
+              <input type="password" name="password_confirmation" id="password_confirmation" class="with-font">
             </div>
             <div class="col-md-12">
               @if ($errors->has('password'))
@@ -81,10 +83,10 @@ Register | MonogaTest
               @endif
             </div>
             <div class="form-group col-md-12">
-              {{ Form::submit('Sign up', array('class' => 'btn btn-monogatest')) }}
+              <input type="submit" name="submit" value="Sign up" class="btn btn-monogatest">
             </div>
-            {{ Form::hidden('private', '0') }}
-          {{ Form::close() }}
+            <input type="hidden" name="private" value="0">
+          </form>
         </div>
       </div>
       <p>

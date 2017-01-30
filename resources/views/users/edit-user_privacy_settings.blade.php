@@ -18,21 +18,21 @@ Privacy Settings {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          {{Form::open(['route' => 'postEditUserPrivacy'])}}
+          <form action="{{route('postEditUserPrivacy')}}" method="post">
           {{ csrf_field() }}
-          {{ Form::hidden('username', $user->username) }}
+          <input type="hidden" name="username" value="{{$user->username}}">
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="text-center">
             <div class="form-group">
-              {{ Form::checkbox('private', 'true', $user->private == 1 ? true : false, array('id' => 'private', 'class' => 'with-font')) }}
-              {{ Form::label('private', 'Private: Prevent other members from viewing my profile information') }}
+              <input type="checkbox" name="private" {{$user->private == 1 ? 'checked' : ''}} id="private" class="with-font">
+              <label for="private">Private: Prevent other members from viewing my profile information</label>
             </div>
           </section>
         </div>
         <div class="form-group">
-          {{ Form::submit('Submit', array('class' => 'btn btn-monogatest')) }}
+          <input type="submit" name="submit" value="Submit" class="btn btn-monogatest">
         </div>
-        {{Form::close()}}
+        </form>
         </section>
       </section>
       @include('partials.sidebar')
