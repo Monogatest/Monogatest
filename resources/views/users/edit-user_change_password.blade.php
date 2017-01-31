@@ -25,15 +25,15 @@ Change Password {{ $user->username }} | MonogaTest
           <section class="col-sm-6">
             <div class="form-group">
               <label for="current_password">Current password (Required)</label>
-              <input type="password" name="current_password" class="form-control">
+              <input type="password" name="current_password" id="current_password" class="form-control">
             </div>
             <div class="form-group">
               <label for="new_password">New password (Required)</label>
-              <input type="password" name="new_password" class="form-control">
+              <input type="password" name="new_password" id="new_password" class="form-control">
             </div>
             <div class="form-group">
               <label for="password_confirmation">Confirm new password (Required)</label>
-              <input type="password" name="password_confirmation" class="form-control">
+              <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
             </div>
           </section>
         </div>

@@ -13,11 +13,11 @@ Login | MonogaTest
     <div class="col-md-8 col-md-push-2">
       <div class="panel panel-default">
         <div class="panel-body text-left">
-          {{ Form::open(['route' => 'auth.login']) }}
+        <form method="post" action="{{route('auth.login')}}">
             {{ csrf_field() }}
             <div class="form-group">
-              {{ Form::label('email', 'Email address') }}
-              {{ Form::email('email', null,  array('class' => 'form-control')) }}
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email">
               @if ($errors->has('email'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('email') }}</strong>
@@ -25,8 +25,8 @@ Login | MonogaTest
               @endif
             </div>
             <div class="form-group">
-              {{ Form::label('password', 'Password') }}
-              {{ Form::password('password',  array('class' => 'form-control')) }}
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password">
               @if ($errors->has('password'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('password') }}</strong>
@@ -34,13 +34,13 @@ Login | MonogaTest
               @endif
             </div>
             <div class="form-group">
-              {{ Form::checkbox('remember', 'remember', false, ['id'=>'remember', 'class'=>'with-font'])}}
-              {{ Form::label('remember', 'Remember me') }}
+            <input type="checkbox" id="remember" name="remember" class="with-font">
+            <label for="remember">Remember me</label>
             </div>
             <div class="form-group">
-              {{ Form::submit('Login', array('class' => 'btn btn-monogatest')) }}
+              <input type="submit" name="submit" value="Sign up" class="btn btn-monogatest">
             </div>
-          {{ Form::close() }}
+          </form>
           <div class="text-center"><a class="btn btn-link" href="{{ route('auth.password.reset') }}">Forgot Your Password?</a></div>
         </div>
       </div>

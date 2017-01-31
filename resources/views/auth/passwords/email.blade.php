@@ -18,11 +18,11 @@ Reset Password | MonogaTest
                   {{ session('status') }}
               </div>
           @endif
-          {{ Form::open(['route' => 'auth.password.email']) }}
+          <form action="{{route('auth.password.email')}}" method="post">
             {{ csrf_field() }}
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-              {{ Form::label('email', 'Email address') }}
-              {{ Form::email('email', null,  array('class' => 'form-control')) }}
+              <label for="email">Email address</label>
+              <input type="email" class="form-control">
               @if ($errors->has('email'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('email') }}</strong>
@@ -36,7 +36,7 @@ Reset Password | MonogaTest
                   </button>
               </div>
             </div>
-          {{ Form::close() }}
+            </form>
         </div>
       </div>
     </div>

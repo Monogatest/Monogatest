@@ -13,42 +13,41 @@ Reset Password | MonogaTest
     <div class="col-md-8 col-md-push-2">
       <div class="panel panel-default">
         <div class="panel-body text-left">
-          {{ Form::open(['route' => 'auth.password.reset']) }}
-            {{ csrf_field() }}
-            <input type="hidden" name="token" value="{{ $token }}">
+        <form action="post" method="{{route('auth.password.reset')}}">
+          {{ csrf_field() }}
+          <input type="hidden" name="token" value="{{ $token }}">
+          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="email">Email address</label>
+            <input type="email" id="email" class="form-control">
+            @if ($errors->has('email'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('email') }}</strong>
+                </span>
+            @endif
+          </div>
 
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-              {{ Form::label('email', 'Email address') }}
-              {{ Form::email('email', null,  array('class' => 'form-control')) }}
-              @if ($errors->has('email'))
-                  <span class="help-block text-danger">
-                      <strong>{{ $errors->first('email') }}</strong>
-                  </span>
-              @endif
+          <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+            <label for="password">Password</label>
+            <input type="password" id="password" class="form-control">
+            @if ($errors->has('password'))
+                <span class="help-block text-danger">
+                    <strong>{{ $errors->first('password') }}</strong>
+                </span>
+            @endif
+          </div>
+          <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+            <label for="password_confirmation">Confirm Password</label>
+            <input type="password" id="password_confirmation" class="form-control">
+          </div>
+          <div class="form-group">
+            <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-monogatest">
+                    <i class="fa fa-btn fa-refresh"></i> Reset Password
+                </button>
             </div>
-
-            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-              {{ Form::label('password', 'Password') }}
-              {{ Form::password('password',  array('class' => 'form-control')) }}
-              @if ($errors->has('password'))
-                  <span class="help-block text-danger">
-                      <strong>{{ $errors->first('password') }}</strong>
-                  </span>
-              @endif
-            </div>
-            <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-              {{ Form::label('password_confirmation', 'Confirm Password') }}
-              {{ Form::password('password_confirmation',  array('class' => 'form-control')) }}
-            </div>
-            <div class="form-group">
-              <div class="col-md-6 col-md-offset-4">
-                  <button type="submit" class="btn btn-monogatest">
-                      <i class="fa fa-btn fa-refresh"></i> Reset Password
-                  </button>
-              </div>
-            </div>
-          {{ Form::close() }}
-        </div>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
 @endsection
