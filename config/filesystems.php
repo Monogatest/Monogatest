@@ -54,12 +54,12 @@ return [
             'visibility' => 'public',
         ],
 
-        's3' => [
+        's3images' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => env('S3_KEY'),
+            'secret' => env('S3_SECRET'),
+            'region' => 'eu-central-1',
+            'bucket' => 'monogatest',
         ],
 
     ],

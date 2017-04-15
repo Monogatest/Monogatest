@@ -35,17 +35,20 @@ Register | MonogaTest
                   </span>
               @endif
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label for="username">Username (Required)</label>
-              <input type="text" name="username" id="username" class="form-control">
-              <small class="text-muted">The username will be visible for other users</small>
+              <div class="input-group">
+                <div class="input-group-addon">{{ config('app.url') }}/user/</div>
+                <input type="text" name="username" id="username" class="form-control">
+              </div>
               @if ($errors->has('username'))
-                  <span class="help-block">
-                      <strong>{{ $errors->first('username') }}</strong>
-                  </span>
+              <span class="help-block">
+                <strong>{{ $errors->first('username') }}</strong>
+              </span>
               @endif
+              <small class="text-muted">The username will be visible for other users</small>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <label for="email">Email Address (Required)</label>
               <input type="email" name="email" id="email" class="form-control">
               @if ($errors->has('email'))
@@ -69,11 +72,11 @@ Register | MonogaTest
             </div>
             <div class="form-group col-md-6">
               <label for="password">Password (Required)</label>
-              <input type="password" name="password" id="password" class="with-font">
+              <input type="password" name="password" id="password" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="password_confirmation">Confirm Password (Required)</label>
-              <input type="password" name="password_confirmation" id="password_confirmation" class="with-font">
+              <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
             </div>
             <div class="col-md-12">
               @if ($errors->has('password'))

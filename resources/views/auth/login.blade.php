@@ -17,7 +17,7 @@ Login | MonogaTest
             {{ csrf_field() }}
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email">
+              <input type="email" id="email" name="email" class="form-control">
               @if ($errors->has('email'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('email') }}</strong>
@@ -26,7 +26,7 @@ Login | MonogaTest
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password">
+              <input type="password" id="password" name="password" class="form-control">
               @if ($errors->has('password'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('password') }}</strong>

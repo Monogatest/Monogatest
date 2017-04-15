@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->boolean('private');
             $table->string('password');
             $table->string('bio', 1000);
-            $table->string('avatar');
+            $table->string('avatar')->default('https://s3.eu-central-1.amazonaws.com/monogatest/avatar/default-user.png');
             $table->rememberToken();
             $table->timestamps();
         });

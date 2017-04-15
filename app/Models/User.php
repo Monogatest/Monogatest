@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'gender', 'private', 'email', 'password', 'username', 'avatar', 'bio', 'facebook', 'twitter', 'instagram',
+        'first_name', 'last_name', 'gender', 'private', 'email', 'password', 'username', 'avatar', 'bio',
     ];
 
     /**
@@ -23,10 +23,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function tests(){
-      return $this->hasMany('App\Test');
+
+    public function getRouteKeyName(){
+      return 'username';
     }
+
+    public function tests(){
+      return $this->hasMany('App\Models\Test');
+    }
+
     public function tests_taken(){
-      return $this->belongsToMany('App\Test')->withPivot('id', 'score')->withTimestamps();
+      return $this->belongsToMany('App\Models\Test')->withPivot('id', 'score')->withTimestamps();
+    }
+    
+    public function social(){
+      return $this->hasOne('App\Models\UserSocialMedia');
     }
 }

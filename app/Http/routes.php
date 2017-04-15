@@ -67,32 +67,32 @@ Route::get('/tests/create', [
   'middleware' => 'auth',
 ]);
 
-Route::get('/tests/{test_id}', [
+Route::get('/tests/{test}', [
   'as' => 'tests.test',
   'uses' => 'TestController@getTest',
 ]);
 
-Route::get('/tests/{test_id}/test', [
+Route::get('/tests/{test}/test', [
   'as' => 'tests.test.prepare',
   'uses' => 'TestController@getPrepareTest',
 ]);
 
-Route::get('/tests/{test_id}/test/review', [
+Route::get('/tests/{test}/test/review', [
   'as' => 'tests.test.review',
   'uses' => 'TestController@getTestReview',
 ]);
 
-Route::get('/tests/{test_id}/test/result', [
+Route::get('/tests/{test}/test/result', [
   'as' => 'tests.test.result',
   'uses' => 'TestController@getTestResult',
 ]);
 
-Route::get('/tests/{test_id}/test/{page_number}', [
+Route::get('/tests/{test}/test/{page_number}', [
   'as' => 'tests.test.start',
   'uses' => 'TestController@getStartTest',
 ]);
 
-Route::get('/tests/search/user/{username}', [
+Route::get('/tests/search/user/{user}', [
   'as' => 'tests.search.user',
   'uses' => 'TestController@getUserTests',
 ]);
@@ -109,32 +109,41 @@ Route::get('/test/get_answers', [
 
 // Users
 
-Route::get('/user/{username}', [
+Route::get('/user/{user}', [
   'as' => 'getUser',
-  'uses' => 'UserController@getUser',
+  'uses' => 'UserController@get',
   ]);
 
-Route::get('/user/{username}/edit', [
+Route::get('/user/{user}/edit', [
+  'middleware' => 'auth',
   'as' => 'getEditUser',
-  'uses' => 'UserController@getEditUser',
+  'uses' => 'UserController@edit',
   ]);
-Route::get('/user/{username}/edit/privacy_settings', [
-  'as' => 'getEditUserPrivacy',
-  'uses' => 'UserController@getEditUserPrivacy',
-  ]);
-Route::get('/user/{username}/edit/contact_settings', [
+Route::get('/user/{user}/edit/contact_settings', [
+  'middleware' => 'auth',
   'as' => 'getEditUserContact',
   'uses' => 'UserController@getEditUserContact',
   ]);
-Route::get('/user/{username}/edit/change_password', [
+Route::get('/user/{user}/edit/change_password', [
+  'middleware' => 'auth',
   'as' => 'getEditUserPassword',
-  'uses' => 'UserController@getEditUserPassword',
+  'uses' => 'UserController@editPassword',
   ]);
-Route::post('/user/edit/profile', [
-  'as' => 'postEditUser',
-  'uses' => 'UserController@postEditUser',
+Route::put('/user/{user}/edit/change_password', [
+  'middleware' => 'auth',
+  'uses' => 'UserController@updatePassword',
+  ]);
+Route::put('/user/{user}/edit/profile', [
+  'middleware' => 'auth',
+  'as' => 'putUpdateUser',
+  'uses' => 'UserController@update',
 ]);
-Route::post('/user/edit/privacy', [
-  'as' => 'postEditUserPrivacy',
-  'uses' => 'UserController@postEditUserPrivacy',
+Route::get('/user/{user}/edit/privacy_settings', [
+  'middleware' => 'auth',
+  'as' => 'getEditUserPrivacy',
+  'uses' => 'UserController@getEditUserPrivacy',
+]);
+Route::put('/user/{user}/edit/privacy_settings', [
+  'middleware' => 'auth',
+  'uses' => 'UserController@updatePrivacy',
 ]);

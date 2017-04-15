@@ -18,7 +18,7 @@ MonogaTest
 	 <a class="btn btn-monogatest margin-top" href="{{ route('tests') }}">Visit Tests Page</a>
 	 <div class="go-down"><a href="#about" class="page-scroll"><i class="fa fa-angle-double-down fa-5x" aria-hidden="true"></i></a></div>
 </header>
-	@include('partials.home-nav')
+	@include('partials.nav._home')
 	 <!-- About Section -->
 	 <section id="about" class="section about-section">
 			 <div class="container">
@@ -290,5 +290,5 @@ MonogaTest
 					 </div>
 			 </div>
 	 </section>
-	 @include('partials.home-footer')
+	 @include('partials.footer._home')
 @endsection

@@ -14,9 +14,11 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('page_id');
+            $table->integer('page_id')->unsigned();
             $table->integer('question_number');
             $table->timestamps();
+
+            $table->foreign('page_id')->references('id')->on('test_pages')->onDelete('cascade');
         });
     }
 

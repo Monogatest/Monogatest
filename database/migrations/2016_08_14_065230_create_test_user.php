@@ -14,10 +14,13 @@ class CreateTestUser extends Migration
      {
          Schema::create('test_user', function (Blueprint $table) {
              $table->increments('id');
-             $table->integer('test_id');
-             $table->integer('user_id');
+             $table->integer('test_id')->unsigned();
+             $table->integer('user_id')->unsigned();
              $table->decimal('score', 5, 2);
              $table->timestamps();
+
+             $table->foreign('test_id')->references('id')->on('tests')->onDelete('cascade');
+             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
          });
      }
 

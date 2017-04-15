@@ -4,7 +4,7 @@ Edit Profile {{ $user->username }} | MonogaTest
 @endsection
 
 @section('content')
-    @include('partials.app-nav')
+    @include('partials.nav._app')
     <div class="clearfix">
       <section class="profile-cp col-md-2">
         @include('partials.profile-cp')
@@ -18,23 +18,31 @@ Edit Profile {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          <form action="{{route('postEditUser')}}" method="post">
+          <form action="/user/{{$user->username}}/edit/profile" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
-          <input type="hidden" name="username" value="{{$user->username}}">
+          {{ method_field('PUT') }}
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="col-sm-6">
             <h4>Profile Photo (Avatar)</h4>
             <div class="profile-photo-container">
-                <img src="{{$user->avatar}}-/scale_crop/1024x1024/center/-/quality/best/-/progressive/yes/-/resize/250/" alt="{{$user->username}}">
+                <img src="{{Storage::disk('s3images')->get('avatar/' . $user->avatar)}}" alt="{{$user->username}}">
             </div>
-            <div class="uploadcare">
-                <input type="hidden" name="avatar" value="avatar" role="uploadcare-uploader">
-                <input
-                type="hidden"
-                name="avatar"
-                role="uploadcare-uploader"
-                value="{{$user->avatar}}"
-                >
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="avatar">Avatar</label>
+                <input id="avatar" type="file" name="avatar" value="{{$user->avatar}}" class="form-control">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <label for="username">Username (Required)</label>
+                <input id="username" type="text" name="username" value="{{$user->username}}" class="form-control">
+                @if ($errors->has('username'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('username') }}</strong>
+                    </span>
+                @endif
+              </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6">
@@ -88,7 +96,7 @@ Edit Profile {{ $user->username }} | MonogaTest
             <h4>Social media accounts</h4>
             <div class="form-group">
               <label for="facebook">Facebook username <i class="fa fa-facebook text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
-              <input type="text" name="facebook" id="facebook" value="{{$user->facebook}}" class="form-control">
+              <input type="text" name="facebook" id="facebook" value="{{$user->social->facebook}}" class="form-control">
               @if ($errors->has('facebook'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('facebook') }}</strong>
@@ -97,16 +105,25 @@ Edit Profile {{ $user->username }} | MonogaTest
             </div>
             <div class="form-group">
               <label for="instagram">Instagram username <i class="fa fa-instagram text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
-              <input type="text" id="instagram" name="instagram" value="{{$user->instagram}}" class="form-control">
+              <input type="text" id="instagram" name="instagram" value="{{$user->social->instagram}}" class="form-control">
               @if ($errors->has('instagram'))
                   <span class="help-block text-danger">
-                      <strong>{{ $errors->first('facebook') }}</strong>
+                      <strong>{{ $errors->first('instagram') }}</strong>
+                  </span>
+              @endif
+            </div>
+            <div class="form-group">
+              <label for="snapchat">Snapchat username <i class="fa fa-snapchat-ghost text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
+              <input type="text" id="snapchat" name="snapchat" value="{{$user->social->snapchat}}" class="form-control">
+              @if ($errors->has('snapchat'))
+                  <span class="help-block text-danger">
+                      <strong>{{ $errors->first('snapchat') }}</strong>
                   </span>
               @endif
             </div>
             <div class="form-group">
               <label for="twitter">Twitter username <i class="fa fa-twitter text-primary"></i></label> <span class="text-muted"> (e.g. MonogaTest)</span>
-              <input type="text" id="twitter" name="twitter" value="{{$user->twitter}}" class="form-control">
+              <input type="text" id="twitter" name="twitter" value="{{$user->social->twitter}}" class="form-control">
               @if ($errors->has('twitter'))
                   <span class="help-block text-danger">
                       <strong>{{ $errors->first('twitter') }}</strong>
@@ -131,5 +148,5 @@ Edit Profile {{ $user->username }} | MonogaTest
     </script>
     <script src="https://ucarecdn.com/widget/2.10.0/uploadcare/uploadcare.full.min.js" charset="utf-8"></script>
 
-     @include('partials.home-footer')
+     @include('partials.footer._home')
 @endsection

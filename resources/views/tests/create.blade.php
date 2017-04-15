@@ -5,7 +5,7 @@ Create Test | MonogaTest
 @endsection
 
 @section('content')
-	@include('partials.app-nav')
+	@include('partials.nav._app')
 	<div class="container section">
     <section class="col-md-9">
       <h1>Create Test</h1>
@@ -32,5 +32,5 @@ Create Test | MonogaTest
     </section>
 		@include('partials.sidebar')
 	</div>
-	 @include('partials.home-footer')
+	 @include('partials.footer._home')
 @endsection

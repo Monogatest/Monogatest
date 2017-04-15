@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<div class="col-md-8 col-md-pull-4">
-			<p class="copyright">Copyright © 2016 | MonogaTest | All Rights Reserved</p>
+			<p class="copyright">Copyright © 2017 | MonogaTest | All Rights Reserved</p>
 		</div>
 	</div>
 </footer>

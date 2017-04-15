@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Test;
-use App\TestPage;
-use App\Question;
-use App\User;
-use App\Answer;
+use App\Models\Test;
+use App\Models\TestPage;
+use App\Models\Question;
+use App\Models\User;
+use App\Models\Answer;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use Session;
@@ -26,37 +26,34 @@ class TestController extends Controller
     return view('tests.tests', ['tests' => $tests]);
   }
 
-  public function getUserTests($username){
-    $user = User::whereUsername($username)->first();
+  public function getUserTests(User $user){
     $tests = Test::where('user_id', $user->id)->get();
     return view('tests.search-username', ['tests' => $tests, 'user' => $user]);
   }
 
-  public function getTest($test_id){
-    $test = Test::findOrFail($test_id);
-    $pages = TestPage::where('test_id', $test_id)->get();
+  public function getTest(Test $test){
+    $pages = TestPage::where('test_id', $test->id)->get();
     $questions = Question::whereIn('page_id', $pages->pluck('id'))->get();
     return view('tests.test', ['test' => $test, 'pages' => $pages->count(), 'questions' => $questions->count()]);
   }
-  public function getPrepareTest(Request $request, $test_id){
+  public function getPrepareTest(Request $request, Test $test){
     if(!Session::has('test_id')){
-      $this->initializeSession($test_id);
-    }else if(Session::get('test_id') != $test_id){
-      $this->initializeSession($test_id);
+      $this->initializeSession($test->id);
+    }else if(Session::get('test_id') != $test->id){
+      $this->initializeSession($test->id);
     }
-    return Redirect::action('TestController@getStartTest', ['test_id' => $test_id, 'page_number' =>1]);
+    return Redirect::action('TestController@getStartTest', ['test_id' => $test->id, 'page_number' =>1]);
   }
-  public function getStartTest($test_id, $page_number){
+  public function getStartTest(Test $test, $page_number){
     if(!Session::has('test_id')){
       Session::flash('abort', '<strong>This test was terminated or not started properly!</strong>');
-      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+      return Redirect::action('TestController@getTest', ['test_id' => $test->id]);
     }
-    if(Session::get('test_id') != $test_id){
+    if(Session::get('test_id') != $test->id){
       Session::flash('abort', '<strong>Error: </strong><span lang="ja">' . Test::findOrFail(Session::get('test_id'))->title . '</span> is currently running');
-      return Redirect::action('TestController@getTest', ['test_id' => $test_id]);
+      return Redirect::action('TestController@getTest', ['test_id' => $test->id]);
     }
-    $test = Test::findOrFail($test_id);
-    $pages = TestPage::where('test_id', $test_id)->get();
+    $pages = TestPage::where('test_id', $test->id)->get();
     $questions = Question::where('page_id', $pages[$page_number-1]->id)->get();
     // $answers = Answer::whereIn('question_id', $questions->pluck('id'))->question()->question_number;
     // $answers = Answer::whereIn('question_id', $questions->pluck('id'))->get()->groupBy('question_id');
@@ -189,7 +186,7 @@ class TestController extends Controller
   }
 
   public function getCreateTest(){
-    return view('tests.create-test');
+    return view('tests.create');
   }
 
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	@include('partials.app-nav')
+	@include('partials.nav._app')
 	<div class="container section">
     <section class="col-md-9">
 			@if(Session::has('abort'))
@@ -42,5 +42,5 @@
     </section>
 		@include('partials.sidebar')
 	</div>
-	 @include('partials.home-footer')
+	 @include('partials.footer._home')
 @endsection

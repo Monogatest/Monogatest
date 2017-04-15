@@ -4,7 +4,7 @@ Contact Settings {{ $user->username }} | MonogaTest
 @endsection
 
 @section('content')
-    @include('partials.app-nav')
+    @include('partials.nav._app')
     <div class="clearfix">
       <section class="profile-cp col-md-2">
         @include('partials.profile-cp')
@@ -18,9 +18,9 @@ Contact Settings {{ $user->username }} | MonogaTest
             </div>
           @endif
         <div class="row">
-          <form action="{{route('postEditUser')}}" method="post">
+          <form action="/user/{{$user->username}}/edit/contact_settings" method="post">
           {{ csrf_field() }}
-          <input type="hidden" name="username" value="{{$user->username}}">
+          {{ method_field('PUT') }}
           <h3 class="text-center">Username: {{$user->username}}</h3>
           <section class="col-sm-6">
             <h4>Updates</h4>
@@ -56,5 +56,5 @@ Contact Settings {{ $user->username }} | MonogaTest
       </section>
       @include('partials.sidebar')
     </div>
-     @include('partials.home-footer')
+     @include('partials.footer._home')
 @endsection

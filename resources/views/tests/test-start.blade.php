@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-	@include('partials.test-nav')
+	@include('partials.nav._test')
 	<div class="container section">
     <section lang="ja" class="col-md-12">
 			<div id="session"></div>
@@ -36,7 +36,7 @@
     </section>
 	</div>
 
-	 @include('partials.test-footer')
+	 @include('partials.footer._test')
 	 @push('test')
 	 <script type="text/javascript">
 	 var token = '{{ Session::token() }}';

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Answer;
+use App\Models\Answer;
 class AnswerTableSeeder extends Seeder
 {
     /**

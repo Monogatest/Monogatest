@@ -22,7 +22,7 @@
 							 </ul>
 							 @if(Auth::check())
 							 <ul class="nav navbar-nav navbar-right">
-									 <li><a href="{{ route('getUser', ['username' => Auth::user()->username]) }}">{{Auth::user()->first_name}}</a></li>
+									 <li><a href="{{ route('getUser', ['username' => $username]) }}">{{$username}}</a></li>
 									 <li><a href="{{ route('auth.logout')}}">Logout</a></li>
 							 </ul>
 							 @else
